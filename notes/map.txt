@@ -1,0 +1,9 @@
+Cohero Demo
+
+Kiosk events via WebSocket / Socket.io
+Queued in live queue array
+Queued events are displayed every XXXms
+
+Grid via bootstrap
+SVGs with SnapSVG
+Animations with CSS, animate.css, wow.js?

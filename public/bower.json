@@ -1,0 +1,23 @@
+{
+  "name": "cohero-demo-frontend",
+  "authors": [
+    "Connor <cononrbfranklin@gmail.com>"
+  ],
+  "description": "",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "respond": "^1.4.2",
+    "html5shiv": "^3.7.3",
+    "animate.css": "^3.5.2"
+  }
+}

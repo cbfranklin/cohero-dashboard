@@ -1,0 +1,119 @@
+body {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#167ce2+0,4592e0+100,7db9e8+100 */
+    background: #167ce2;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #167ce2 0%, #4592e0 100%, #7db9e8 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #167ce2 0%, #4592e0 100%, #7db9e8 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #167ce2 0%, #4592e0 100%, #7db9e8 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#167ce2', endColorstr='#7db9e8', GradientType=0);
+    /* IE6-9 */
+    font-family: "Proxima Nova";
+}
+
+html {
+    height: 100%;
+}
+
+.cohero-navbar {
+    background: rgba(255, 255, 255, 0.1);
+    border: 0;
+    box-shadow: 0 0.6em 0.3em -0.3em rgba(0, 0, 0, 0.3);
+}
+
+.navbar-brand a {
+    color: #fff;
+}
+
+.navbar-default .navbar-brand {
+    color: #fff;
+}
+
+.cohero-row-notification {
+    height: 50vh;
+    padding-top: 1vh;
+}
+
+.cohero-notification {
+    position: relative;
+}
+
+.cohero-notification-circle {
+    position: absolute;
+    z-index: 100;
+    max-height: 45vh;
+}
+
+.cohero-notification-container {
+    width: 50%;
+    height: 45vh;
+    left: 25%;
+    position: absolute;
+    z-index: 101;
+    display: table;
+}
+
+.cohero-notification-item {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.cohero-notification-item img {
+    width: 45%;
+    height: auto;
+    vertical-align: middle;
+}
+
+.cohero-notification-item p {
+    margin: 0;
+    padding: 0;
+    color: #167ce2;
+    font-size: 2.0vw;
+}
+
+.cohero-notification-item strong {
+    display: block;
+    font-size: 4em;
+    line-height: 1.3em;
+}
+
+.cohero-queue {
+    color: #fff;
+    overflow: hidden;
+    font-size: 2.5vh;
+}
+
+.cohero-queue-header {
+    background: rgba(255, 255, 255, 0.1);
+    height: 5vh;
+    padding-top: 0.3em;
+    margin-bottom: 0.3em;
+    box-shadow: 0 0.6em 0.3em -0.3em rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+}
+
+.cohero-queue-container {
+    max-height: 50vh;
+    overflow: hidden;
+}
+
+.cohero-queue-item {
+    height: 5vh;
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+}
+
+.cohero-queue-item-time, .cohero-queue-item-kiosk {
+    height: 100%;
+    padding-top: 0.3em;
+}
+
+.cohero-queue-item-time {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.cohero-queue-item-kiosk {
+    background: rgba(255, 255, 255, 0.3);
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cohero Demo</title>
+
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/animate.css/animate.min.css" rel="stylesheet">
+    <link href="css/proxima-nova.css" />
+    <link href="css/main.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-default cohero-navbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#"></a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row-fluid cohero-row-notification">
+            <div class="col-xs-6 cohero-notification">
+                <svg class="cohero-notification-circle" viewbox="0 0 200 200">
+                  <circle class="path" fill="#fff" cx="100" cy="100" r="95" stroke="#63a8ed" stroke-width="8" stroke-miterlimit="10" />
+                </svg>
+                <div class="cohero-notification-container slideshow">
+                    <div class="cohero-notification-item animated fadeInUp">
+                        <p>
+                            <strong>1</strong> Puff Synched
+                        </p>
+                    </div>
+                    <div class="cohero-notification-item">
+                        <img src="assets/HeroTracker.svg" class="animated bounceInUp" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xs-6 cohero-notification">
+                <svg class="cohero-notification-circle" viewbox="0 0 200 200">
+                  <circle class="path" fill="#fff" cx="100" cy="100" r="95" stroke="#63a8ed" stroke-width="8" stroke-miterlimit="10" />
+                </svg>
+                <div class="cohero-notification-container">
+                    <!--<div class="cohero-notification-item animated fadeInUp">
+                        <p>
+                            <strong>2</strong> Spirometer Tests
+                        </p>
+                    </div>-->
+                    <div class="cohero-notification-item">
+                        <img src="assets/Spirometer.svg" class="animated wobble" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="col-xs-6 cohero-queue">
+                <div class="cohero-queue-header">
+                    <div class="col-xs-12">
+                        eMDI Queue
+                    </div>
+                </div>
+                <div class="cohero-queue-container">
+                    <div class="cohero-queue-item">
+                        <div class="cohero-queue-item-time col-xs-3">
+                            20:38
+                        </div>
+                        <div class="cohero-queue-item-kiosk col-xs-9">
+                            Glenlivet Kiosk
+                        </div>
+                    </div>
+                    <div class="cohero-queue-item">
+                        <div class="cohero-queue-item-time col-xs-3">
+                            20:39
+                        </div>
+                        <div class="cohero-queue-item-kiosk col-xs-9">
+                            Glenlivet Kiosk
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 cohero-queue">
+                <div class="cohero-queue-header">
+                    <div class="col-xs-12">
+                        mSpirometer Queue
+                    </div>
+                </div>
+                <div class="cohero-queue-container">
+                    <div class="cohero-queue-item">
+                        <div class="cohero-queue-item-time col-xs-3">
+                            20:38
+                        </div>
+                        <div class="cohero-queue-item-kiosk col-xs-9">
+                            Glenlivet Kiosk
+                        </div>
+                    </div>
+                    <div class="cohero-queue-item">
+                        <div class="cohero-queue-item-time col-xs-3">
+                            20:39
+                        </div>
+                        <div class="cohero-queue-item-kiosk col-xs-9">
+                            Glenlivet Kiosk
+                        </div>
+                    </div>
+                    <div class="cohero-queue-item animated fadeInUp">
+                        <div class="cohero-queue-item-time col-xs-3">
+                            20:40
+                        </div>
+                        <div class="cohero-queue-item-kiosk col-xs-9">
+                            Dewars Kiosk
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="templates" style="display:none">
+        <div class="template-cohero-notification">
+            {{}}
+        </div>
+    </div>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/wow/dist/wow.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
