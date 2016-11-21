@@ -5,7 +5,7 @@ var io = require('socket.io')(http);
 var moment = require('moment');
 require('console.table');
 
-app.use('/', express.static('public'))
+app.use('/', express.static('public'));
 
 http.listen(3000, function() {
     console.log('listening on *:3000');
@@ -17,19 +17,22 @@ function randomEvent() {
 
     var eventType = Math.floor((Math.random() * 2) + 1);
 
+    var randomId = Math.floor((Math.random() * 200));
+
+    var event;
+
     //puffTaken
     if (eventType === 1) {
-        var event = eventTemplates.puffTaken;
-        var randomId = Math.floor((Math.random() * 200));
+        event = eventTemplates.puffTaken;
+
         event.eventId = 'P-100' + randomId;
     }
 
     //lungFunctionTest
     if (eventType === 2) {
-        var event = eventTemplates.lungFunctionTest;
+        event = eventTemplates.lungFunctionTest;
         var randomPef = Math.floor((Math.random() * 200) + 400);
         event.eventDetails.pef = randomPef;
-        var randomId = Math.floor((Math.random() * 200));
         event.eventId = 'LF-100' + randomId;
     }
 
@@ -37,13 +40,13 @@ function randomEvent() {
     event.localTimestamp = now;
     event.eventDetails.eventTimeLocal = now;
 
-    var whiskys = ['Glenlivet','Dewars','Jameson','Laphroaig']
-	var kioskName = whiskys[Math.floor(Math.random()*whiskys.length)];
-	event.title = kioskName;
+    var whiskys = ['Glenlivet', 'Dewars', 'Jameson', 'Laphroaig'];
+    var kioskName = whiskys[Math.floor(Math.random() * whiskys.length)];
+    event.title = kioskName;
 
-	console.log('\nEvent Emitted\n');
-	console.table(event)
-	io.emit('kioskEvent', event)
+    console.log('\nEvent Emitted\n');
+    console.table(event);
+    io.emit('kioskEvent', event);
 }
 
 function randomEventLoop() {
@@ -52,7 +55,7 @@ function randomEventLoop() {
         randomEvent();
         randomEventLoop();
     }, rand);
-};
+}
 
 var eventTemplates = {};
 
@@ -79,7 +82,7 @@ eventTemplates.puffTaken = {
         /*0-100*/
         "remainingPuffs": 67
     }
-}
+};
 
 eventTemplates.lungFunctionTest = {
     "eventType": "lungFunctionTest",
@@ -102,4 +105,4 @@ eventTemplates.lungFunctionTest = {
         "syncToServerTimeUTC": "16:12:33",
         "battery": 77 /*0-100*/
     }
-}
+};

@@ -13,7 +13,7 @@ var data = {
 var inProgress = {
     "puffTaken": false,
     "lungFunctionTest": false
-}
+};
 
 var chrome = /chrom(e|ium)/.test(navigator.userAgent.toLowerCase());
 
@@ -24,8 +24,8 @@ $(function() {
     }
 
     templates['cohero-queue-item'] = $('.template-cohero-queue-item').html();
-    templates['cohero-notification-puffTaken'] = $('.template-cohero-notification-puffTaken').html()
-    templates['cohero-notification-lungFunctionTest'] = $('.template-cohero-notification-lungFunctionTest').html()
+    templates['cohero-notification-puffTaken'] = $('.template-cohero-notification-puffTaken').html();
+    templates['cohero-notification-lungFunctionTest'] = $('.template-cohero-notification-lungFunctionTest').html();
 
     var socket = io();
     socket.on('kioskEvent', kioskEventHandler);
@@ -45,10 +45,10 @@ function addQueueItem(item) {
     $queue.append(renderedHTML);
 
     item.queued = true;
-    data[type].push(item)
+    data[type].push(item);
     counts[type] += 1;
 
-    setTimeout(checkForQueuedItems, 2000, type)
+    setTimeout(checkForQueuedItems, 2000, type);
 
     console.log('Event Queued', item.eventId);
 }
@@ -58,25 +58,25 @@ function removeQueueItem(id) {
     $item.slideUp();
     setTimeout(function() {
         $item.remove();
-    }, 1000)
+    }, 1000);
 }
 
 function notifyQueuedItem(item) {
-    console.log('notifyQueuedItem', item.eventId)
+    console.log('notifyQueuedItem', item.eventId);
     var type = item.eventType;
-    console.log(type)
+    console.log(type);
 
     if (type === 'puffTaken') {
-        notifyPuffTaken(item)
+        notifyPuffTaken(item);
     }
     if (type === 'lungFunctionTest') {
-        notifyLungFunctionTest(item)
+        notifyLungFunctionTest(item);
     }
 }
 
 function notifyPuffTaken(item) {
     inProgress.puffTaken = true;
-    console.log('notifyPuffTaken')
+    console.log('notifyPuffTaken');
     var renderedHTML = Mustache.to_html(templates['cohero-notification-puffTaken'], {
         item: item,
         count: counts.puffTaken
@@ -86,13 +86,13 @@ function notifyPuffTaken(item) {
 
     setTimeout(function() {
         inProgress.puffTaken = false;
-        checkForQueuedItems('puffTaken')
-    }, 6000)
+        checkForQueuedItems('puffTaken');
+    }, 6000);
 }
 
 function notifyLungFunctionTest(item) {
     inProgress.lungFunctionTest = true;
-    console.log('notifyLungFunctionTest')
+    console.log('notifyLungFunctionTest');
     var renderedHTML = Mustache.to_html(templates['cohero-notification-lungFunctionTest'], {
         item: item,
         count: counts.lungFunctionTest
@@ -102,25 +102,25 @@ function notifyLungFunctionTest(item) {
 
     setTimeout(function() {
         inProgress.lungFunctionTest = false;
-        checkForQueuedItems('lungFunctionTest')
-    }, 9000)
+        checkForQueuedItems('lungFunctionTest');
+    }, 9000);
 }
 
 function checkForQueuedItems(type) {
-    console.log('determining if in progress', type)
+    console.log('determining if in progress', type);
     if (inProgress[type] === false) {
-        console.log('NOT in progress, checking for queued items')
+        console.log('NOT in progress, checking for queued items');
             //inProgress[type] = true;
         var found = false;
         var dataOfType = data[type];
 
-        for (i in dataOfType) {
+        for (var i in dataOfType) {
             if (dataOfType[i].queued === true) {
                 var item = dataOfType[i];
                 item.queued = false;
                 console.log('Event DeQueued', item.eventId);
-                notifyQueuedItem(item)
-                removeQueueItem(item.eventId)
+                notifyQueuedItem(item);
+                removeQueueItem(item.eventId);
                 found = true;
                 break;
             }
@@ -133,15 +133,15 @@ function checkForQueuedItems(type) {
         }
     }
     if (inProgress[type] === true) {
-        console.log('IN PROGRESS', type)
+        console.log('IN PROGRESS', type);
     }
 }
 
 
 (function($) {
     $.fn.marquisPuffTaken = function() {
-        console.log('marquis')
-        console.log($(this).children().eq(0))
+        console.log('marquis');
+        console.log($(this).children().eq(0));
         var $container = $(this);
         $container.children().hide().eq(0).animateCSS('fadeInUp', {
             callback: function() {
@@ -150,11 +150,11 @@ function checkForQueuedItems(type) {
                     callback: function() {
                         $(this).hide();
                     }
-                })
+                });
             }
         });
         setTimeout(function() {
-            console.log($container.children().eq(1))
+            console.log($container.children().eq(1));
             $container.children().eq(1).animateCSS('fadeInUp', {
                 callback: function() {
                     $(this).animateCSS('fadeOutUp', {
@@ -162,10 +162,10 @@ function checkForQueuedItems(type) {
                         callback: function() {
                             $(this).hide();
                         }
-                    })
+                    });
                 }
             });
-        }, 3000)
+        }, 3000);
         return this;
     };
 }(jQuery));
@@ -179,7 +179,7 @@ $.fn.marquisLungFunctionTest = function() {
                 callback: function() {
                     $(this).hide();
                 }
-            })
+            });
         }
     });
     setTimeout(function() {
@@ -190,10 +190,10 @@ $.fn.marquisLungFunctionTest = function() {
                     callback: function() {
                         $(this).hide();
                     }
-                })
+                });
             }
         });
-    }, 3000)
+    }, 3000);
     setTimeout(function() {
         $container.children().eq(2).animateCSS('fadeInUp', {
             callback: function() {
@@ -202,9 +202,9 @@ $.fn.marquisLungFunctionTest = function() {
                     callback: function() {
                         $(this).hide();
                     }
-                })
+                });
             }
         });
-    }, 6000)
+    }, 6000);
     return this;
 };
