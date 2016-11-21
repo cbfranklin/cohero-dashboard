@@ -1,4 +1,14 @@
 body {
+    font-family: "Proxima Nova";
+    color:#fff;
+}
+
+html {
+    height: 100%;
+    overflow:hidden;
+}
+
+.cohero-gradient{
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#167ce2+0,4592e0+100,7db9e8+100 */
     background: #167ce2;
     /* Old browsers */
@@ -10,11 +20,18 @@ body {
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#167ce2', endColorstr='#7db9e8', GradientType=0);
     /* IE6-9 */
-    font-family: "Proxima Nova";
 }
 
-html {
-    height: 100%;
+.cohero-portrait{
+    height:100%;
+    width:100%;
+    position:absolute;
+    display:none;
+    z-index:10000;
+}
+
+@media screen and (orientation:portrait){
+    .cohero-portrait{display:block;}
 }
 
 .cohero-navbar {
@@ -29,6 +46,7 @@ html {
 
 .navbar-default .navbar-brand {
     color: #fff;
+    height:10vh;
 }
 
 .cohero-row-notification {
@@ -38,12 +56,16 @@ html {
 
 .cohero-notification {
     position: relative;
+    height: 50vh;
+    overflow:hidden;
 }
 
 .cohero-notification-circle {
     position: absolute;
     z-index: 100;
     max-height: 45vh;
+    display:block;
+    margin:0 auto;
 }
 
 .cohero-notification-container {
@@ -59,10 +81,12 @@ html {
     text-align: center;
     display: table-cell;
     vertical-align: middle;
+    width:100%;
+    height:45vh;
 }
 
 .cohero-notification-item img {
-    width: 45%;
+    width: 40%;
     height: auto;
     vertical-align: middle;
 }
@@ -74,40 +98,46 @@ html {
     font-size: 2.0vw;
 }
 
-.cohero-notification-item strong {
-    display: block;
+.cohero-notification-item .count {
     font-size: 4em;
     line-height: 1.3em;
+    display:block;
+}
+
+.cohero-notification-item .spirometer-reading{
+    font-size:1.6em;
+    display: block;
+}
+
+.cohero-notification-item .spirometer-kiosk{
+    color:#89E7DA;
+    display: block;
 }
 
 .cohero-queue {
     color: #fff;
     overflow: hidden;
-    font-size: 2.5vh;
 }
 
 .cohero-queue-header {
     background: rgba(255, 255, 255, 0.1);
-    height: 5vh;
-    padding-top: 0.3em;
+    padding: 0.3em 0.3em;
     margin-bottom: 0.3em;
     box-shadow: 0 0.6em 0.3em -0.3em rgba(0, 0, 0, 0.3);
     font-weight: bold;
+    overflow:hidden;
+    font-size:3.5vh;
 }
 
 .cohero-queue-container {
-    max-height: 50vh;
+    height: 50vh;
     overflow: hidden;
-}
-
-.cohero-queue-item {
-    height: 5vh;
-    border-bottom: 1px solid rgba(0, 0, 0, 0);
+    font-size:3vh;
 }
 
 .cohero-queue-item-time, .cohero-queue-item-kiosk {
     height: 100%;
-    padding-top: 0.3em;
+    padding: 0.3em 0.5em;
 }
 
 .cohero-queue-item-time {

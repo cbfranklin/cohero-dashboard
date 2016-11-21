@@ -18,6 +18,9 @@
   "dependencies": {
     "respond": "^1.4.2",
     "html5shiv": "^3.7.3",
-    "animate.css": "^3.5.2"
+    "animate.css": "^3.5.2",
+    "socket.io-client": "^1.6.0",
+    "mustache.js": "mustache#^2.3.0",
+    "animateCSS": "^1.2.1"
   }
 }
