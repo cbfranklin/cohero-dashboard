@@ -66,6 +66,10 @@ html {
     max-height: 45vh;
     display:block;
     margin:0 auto;
+    fill: #fff;
+    stroke: #63a8ed;
+    stroke-width: 8;
+    stroke-miterlimit: 10;
 }
 
 .cohero-notification-container {
