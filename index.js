@@ -4,7 +4,6 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var moment = require('moment');
 require('console.table');
-var simulatedEvents = require('./events.js').SimulatedEvents;
 
 app.use('/', express.static('public'))
 
