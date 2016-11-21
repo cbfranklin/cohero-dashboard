@@ -17,10 +17,10 @@ var inProgress = {
 
 var chrome = /chrom(e|ium)/.test(navigator.userAgent.toLowerCase());
 
-$(function() {
 
+$(function() {
 	if (!chrome) {
-        alert('I am designed for use in Google Chrome only.');
+        alert('I am designed for use in Google Chrome & Chromium only.');
     }
 
     templates['cohero-queue-item'] = $('.template-cohero-queue-item').html();
