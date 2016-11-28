@@ -19,7 +19,7 @@ var chrome = /chrom(e|ium)/.test(navigator.userAgent.toLowerCase());
 
 
 $(function() {
-	if (!chrome) {
+    if (!chrome) {
         alert('I am designed for use in Google Chrome & Chromium only.');
     }
 
@@ -62,9 +62,7 @@ function removeQueueItem(id) {
 }
 
 function notifyQueuedItem(item) {
-    console.log('notifyQueuedItem', item.eventId);
     var type = item.eventType;
-    console.log(type);
 
     if (type === 'puffTaken') {
         notifyPuffTaken(item);
@@ -76,7 +74,6 @@ function notifyQueuedItem(item) {
 
 function notifyPuffTaken(item) {
     inProgress.puffTaken = true;
-    console.log('notifyPuffTaken');
     var renderedHTML = Mustache.to_html(templates['cohero-notification-puffTaken'], {
         item: item,
         count: counts.puffTaken
@@ -92,7 +89,6 @@ function notifyPuffTaken(item) {
 
 function notifyLungFunctionTest(item) {
     inProgress.lungFunctionTest = true;
-    console.log('notifyLungFunctionTest');
     var renderedHTML = Mustache.to_html(templates['cohero-notification-lungFunctionTest'], {
         item: item,
         count: counts.lungFunctionTest
@@ -107,10 +103,7 @@ function notifyLungFunctionTest(item) {
 }
 
 function checkForQueuedItems(type) {
-    console.log('determining if in progress', type);
     if (inProgress[type] === false) {
-        console.log('NOT in progress, checking for queued items');
-            //inProgress[type] = true;
         var found = false;
         var dataOfType = data[type];
 
@@ -118,7 +111,6 @@ function checkForQueuedItems(type) {
             if (dataOfType[i].queued === true) {
                 var item = dataOfType[i];
                 item.queued = false;
-                console.log('Event DeQueued', item.eventId);
                 notifyQueuedItem(item);
                 removeQueueItem(item.eventId);
                 found = true;
@@ -126,55 +118,19 @@ function checkForQueuedItems(type) {
             }
         }
 
-        //inProgress[type] = false;
-
         if (found) {
             setTimeout(checkForQueuedItems, 3000, type);
         }
     }
-    if (inProgress[type] === true) {
-        console.log('IN PROGRESS', type);
-    }
 }
 
 
-(function($) {
-    $.fn.marquisPuffTaken = function() {
-        console.log('marquis');
-        console.log($(this).children().eq(0));
-        var $container = $(this);
-        $container.children().hide().eq(0).animateCSS('fadeInUp', {
-            callback: function() {
-                $(this).animateCSS('fadeOutUp', {
-                    delay: 1000,
-                    callback: function() {
-                        $(this).hide();
-                    }
-                });
-            }
-        });
-        setTimeout(function() {
-            console.log($container.children().eq(1));
-            $container.children().eq(1).animateCSS('fadeInUp', {
-                callback: function() {
-                    $(this).animateCSS('fadeOutUp', {
-                        delay: 1000,
-                        callback: function() {
-                            $(this).hide();
-                        }
-                    });
-                }
-            });
-        }, 3000);
-        return this;
-    };
-}(jQuery));
 
-$.fn.marquisLungFunctionTest = function() {
+$.fn.marquisPuffTaken = function() {
     var $container = $(this);
-    $container.children().hide().eq(0).animateCSS('fadeInUp', {
+    $container.children().hide().eq(0).animateCSS('fadeInWobble', {
         callback: function() {
-            $(this).animateCSS('fadeOutUp', {
+            $(this).animateCSS('fadeOutDown', {
                 delay: 1000,
                 callback: function() {
                     $(this).hide();
@@ -183,7 +139,7 @@ $.fn.marquisLungFunctionTest = function() {
         }
     });
     setTimeout(function() {
-        $container.children().eq(1).animateCSS('fadeInUp', {
+        $container.children().eq(1).animateCSS('fadeInDown', {
             callback: function() {
                 $(this).animateCSS('fadeOutUp', {
                     delay: 1000,
@@ -195,7 +151,34 @@ $.fn.marquisLungFunctionTest = function() {
         });
     }, 3000);
     setTimeout(function() {
-        $container.children().eq(2).animateCSS('fadeInUp', {
+        $container.children().eq(0).animateCSS('fadeInUp'/*, {
+            callback: function() {
+                $(this).animateCSS('fadeOut', {
+                    delay: 1000,
+                    callback: function() {
+                        $(this).hide();
+                    }
+                });
+            }
+        }*/);
+    }, 6000);
+    return this;
+};
+
+$.fn.marquisLungFunctionTest = function() {
+    var $container = $(this);
+    $container.children().hide().eq(0).animateCSS('fadeInWobble', {
+        callback: function() {
+            $(this).animateCSS('fadeOutDown', {
+                delay: 1000,
+                callback: function() {
+                    $(this).hide();
+                }
+            });
+        }
+    });
+    setTimeout(function() {
+        $container.children().eq(1).animateCSS('fadeInDown', {
             callback: function() {
                 $(this).animateCSS('fadeOutUp', {
                     delay: 1000,
@@ -205,6 +188,30 @@ $.fn.marquisLungFunctionTest = function() {
                 });
             }
         });
+    }, 3000);
+    setTimeout(function() {
+        $container.children().eq(2).animateCSS('fadeInUp'/*, {
+            callback: function() {
+                $(this).animateCSS('fadeOut', {
+                    delay: 1000,
+                    callback: function() {
+                        $(this).hide();
+                    }
+                });
+            }
+        }*/);
     }, 6000);
+    setTimeout(function() {
+        $container.children().eq(2).animateCSS('fadeInUp'/*, {
+            callback: function() {
+                $(this).animateCSS('fadeOutUp', {
+                    delay: 1000,
+                    callback: function() {
+                        $(this).hide();
+                    }
+                });
+            }
+        }*/);
+    }, 9000);
     return this;
 };

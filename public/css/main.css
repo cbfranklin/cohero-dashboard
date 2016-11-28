@@ -1,14 +1,15 @@
 body {
     font-family: "Proxima Nova";
-    color:#fff;
+    color: #fff;
+    background: #167ce2;
 }
 
 html {
     height: 100%;
-    overflow:hidden;
+    overflow: hidden;
 }
 
-.cohero-gradient{
+.cohero-gradient {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#167ce2+0,4592e0+100,7db9e8+100 */
     background: #167ce2;
     /* Old browsers */
@@ -22,16 +23,18 @@ html {
     /* IE6-9 */
 }
 
-.cohero-portrait{
-    height:100%;
-    width:100%;
-    position:absolute;
-    display:none;
-    z-index:10000;
+.cohero-portrait {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: none;
+    z-index: 10000;
 }
 
-@media screen and (orientation:portrait){
-    .cohero-portrait{display:block;}
+@media screen and (orientation:portrait) {
+    .cohero-portrait {
+        display: block;
+    }
 }
 
 .cohero-navbar {
@@ -46,38 +49,58 @@ html {
 
 .navbar-default .navbar-brand {
     color: #fff;
-    height:10vh;
+    height: 10vh;
 }
 
 .cohero-row-notification {
     height: 50vh;
-    padding-top: 1vh;
 }
 
 .cohero-notification {
     position: relative;
     height: 50vh;
-    overflow:hidden;
+    overflow: hidden;
 }
 
-.cohero-notification-circle {
+.cohero-notification-circle-bg {
     position: absolute;
-    z-index: 100;
+    z-index: 99;
     max-height: 45vh;
-    display:block;
-    margin:0 auto;
+    display: block;
+    margin: 0 auto;
     fill: #fff;
     stroke: #63a8ed;
     stroke-width: 8;
     stroke-miterlimit: 10;
+    padding: 2.5vh 0;
+    box-sizing: content-box;
+}
+
+.cohero-notification-circle-fg {
+    position: absolute;
+    z-index: 101;
+    max-height: 45vh;
+    display: block;
+    margin: 0 auto;
+    fill: transparent;
+    stroke: #63a8ed;
+    stroke-width: 8;
+    stroke-miterlimit: 10;
+    background: #167ce2;
+    background: radial-gradient(circle at center, transparent 25%, #167ce2 25.5%);
+    background-size: 220% 200%;
+    background-position: 50% 50%;
+    padding: 2.5vh 0;
+    box-sizing: content-box;
 }
 
 .cohero-notification-container {
     width: 50%;
-    height: 45vh;
+    height: 42.5vh;
+    padding-top:2.5vh;
     left: 25%;
     position: absolute;
-    z-index: 101;
+    z-index: 100;
     display: table;
 }
 
@@ -85,8 +108,8 @@ html {
     text-align: center;
     display: table-cell;
     vertical-align: middle;
-    width:100%;
-    height:45vh;
+    width: 100%;
+    height: 45vh;
 }
 
 .cohero-notification-item img {
@@ -105,16 +128,16 @@ html {
 .cohero-notification-item .count {
     font-size: 4em;
     line-height: 1.3em;
-    display:block;
-}
-
-.cohero-notification-item .spirometer-reading{
-    font-size:1.6em;
     display: block;
 }
 
-.cohero-notification-item .spirometer-kiosk{
-    color:#89E7DA;
+.cohero-notification-item .spirometer-reading {
+    font-size: 1.6em;
+    display: block;
+}
+
+.cohero-notification-item .spirometer-kiosk {
+    color: #89E7DA;
     display: block;
 }
 
@@ -129,14 +152,14 @@ html {
     margin-bottom: 0.3em;
     box-shadow: 0 0.6em 0.3em -0.3em rgba(0, 0, 0, 0.3);
     font-weight: bold;
-    overflow:hidden;
-    font-size:3.5vh;
+    overflow: hidden;
+    font-size: 3.5vh;
 }
 
 .cohero-queue-container {
     height: 50vh;
     overflow: hidden;
-    font-size:3vh;
+    font-size: 3vh;
 }
 
 .cohero-queue-item-time, .cohero-queue-item-kiosk {
@@ -150,4 +173,12 @@ html {
 
 .cohero-queue-item-kiosk {
     background: rgba(255, 255, 255, 0.3);
+}
+
+.fadeInWobble
+{
+    -webkit-animation: swing 1s,
+    fadeIn 1s;
+    animation: swing 1s,
+    fadeIn 1s;
 }
