@@ -1,5 +1,5 @@
 body {
-    font-family: "Proxima Nova";
+    font-family: "Museo-100", sans-serif;
     color: #fff;
     background: #167ce2;
 }
@@ -8,7 +8,9 @@ html {
     height: 100%;
     overflow: hidden;
 }
-
+h2{
+    font-size:4vh;
+}
 .cohero-gradient {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#167ce2+0,4592e0+100,7db9e8+100 */
     background: #167ce2;
@@ -21,6 +23,16 @@ html {
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#167ce2', endColorstr='#7db9e8', GradientType=0);
     /* IE6-9 */
+}
+.cohero-header{
+    width:100%;
+    padding:1vh 0 0.5vh 0;
+}
+.cohero-logo{
+    float:left;
+}
+.cohero-emdi-logo{
+    float:right;
 }
 
 .cohero-portrait {
@@ -87,7 +99,7 @@ html {
     stroke-width: 8;
     stroke-miterlimit: 10;
     background: #167ce2;
-    background: radial-gradient(circle at center, transparent 25%, #167ce2 25.5%);
+    background: radial-gradient(circle at center, transparent 28%, #167ce2 25.5%);
     background-size: 220% 200%;
     background-position: 50% 50%;
     padding: 2.5vh 0;
@@ -161,7 +173,10 @@ html {
     overflow: hidden;
     font-size: 3vh;
 }
-
+.cohero-queue-item{
+    border-bottom:1px solid rgba(0,0,0,0.3);
+    overflow:hidden;
+}
 .cohero-queue-item-time, .cohero-queue-item-kiosk {
     height: 100%;
     padding: 0.3em 0.5em;
@@ -175,10 +190,33 @@ html {
     background: rgba(255, 255, 255, 0.3);
 }
 
+.cohero-activity-log-container{
+    font-size:1.5vh;
+    height:85vh;
+}
+.cohero-activity-log td{
+    padding:0.25vh 0;
+}
+.cohero-activity-log th{
+    background:rgba(255,255,255,0.1);
+    border:none!important;
+}
+.cohero-activity-log td{
+    border-top:0!important;
+}
+.cohero-activity-log tr:nth-child(even) {
+    background: rgba(255,255,255,0.2);
+}
 .fadeInWobble
 {
     -webkit-animation: swing 1s,
     fadeIn 1s;
     animation: swing 1s,
     fadeIn 1s;
+}
+.cohero-activity-log-container{
+    overflow-y: scroll;
+}
+::-webkit-scrollbar {
+    display: none;
 }

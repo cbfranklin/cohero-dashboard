@@ -23,9 +23,16 @@ $(function() {
         alert('I am designed for use in Google Chrome & Chromium only.');
     }
 
+    /*
+    if (localStorage['cohero-events']) {
+    data = JSON.parse(localStorage['cohero-events'])
+  }
+    */
+
     templates['cohero-queue-item'] = $('.template-cohero-queue-item').html();
     templates['cohero-notification-puffTaken'] = $('.template-cohero-notification-puffTaken').html();
     templates['cohero-notification-lungFunctionTest'] = $('.template-cohero-notification-lungFunctionTest').html();
+    templates['cohero-activity-log-item'] = $('.template-cohero-activity-log-item').html();
 
     var socket = io();
     socket.on('kioskEvent', kioskEventHandler);
@@ -72,6 +79,22 @@ function notifyQueuedItem(item) {
     }
 }
 
+function sendItemToActivityLog(item){
+  console.log('Event Sent to Activity Log', item.eventId);
+  var description;
+  if(item.eventType === "puffTaken"){
+    description = "eMDI Puff";
+  }
+  if(item.eventType === "lungFunctionTest"){
+    description = "Spirometry";
+  }
+  var renderedHTML = Mustache.to_html(templates['cohero-activity-log-item'], {
+    item: item,
+    description: description
+  });
+  $('.cohero-activity-log tbody').append(renderedHTML);
+}
+
 function notifyPuffTaken(item) {
     inProgress.puffTaken = true;
     var renderedHTML = Mustache.to_html(templates['cohero-notification-puffTaken'], {
@@ -112,6 +135,7 @@ function checkForQueuedItems(type) {
                 var item = dataOfType[i];
                 item.queued = false;
                 notifyQueuedItem(item);
+                sendItemToActivityLog(item);
                 removeQueueItem(item.eventId);
                 found = true;
                 break;

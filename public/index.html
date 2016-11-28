@@ -7,7 +7,8 @@
     <title>Cohero Demo</title>
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="bower_components/animate.css/animate.min.css" rel="stylesheet">
-    <link href="css/proxima-nova.css" />
+    <link href="css/proxima-nova.css" rel="stylesheet">
+    <link href="css/museo.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
 </head>
 
@@ -20,53 +21,90 @@
     <div class="container-fluid">
         <nav class="navbar navbar-default cohero-navbar">
             <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#"></a>
+                <div class="navbar-header cohero-header">
+                    <div class="cohero-logo">
+                        <img src="assets/icon_coherohealth.svg" />
+                    </div>
+                    <div class="cohero-emdi-logo">
+                        <img src="assets/eMDI%20LOGO.svg" />
+                    </div>
                 </div>
             </div>
         </nav>
     </div>
     <div class="container-fluid">
-        <div class="row-fluid cohero-row-notification">
-            <div class="col-xs-6 cohero-notification">
-                <svg class="cohero-notification-circle-fg" viewbox="0 0 200 200">
-                    <circle class="path" cx="100" cy="100" r="95" />
-                </svg>
-                <svg class="cohero-notification-circle-bg" viewbox="0 0 200 200">
-                    <circle class="path" cx="100" cy="100" r="95" />
-                </svg>
-                <div class="cohero-notification-container cohero-notification-container-puffTaken">
-                </div>
-            </div>
-            <div class="col-xs-6 cohero-notification">
-                <svg class="cohero-notification-circle-fg" viewbox="0 0 200 200">
-                    <circle class="path" cx="100" cy="100" r="95" />
-                </svg>
-                <svg class="cohero-notification-circle-bg" viewbox="0 0 200 200">
-                    <circle class="path" cx="100" cy="100" r="95" />
-                </svg>
-                <div class="cohero-notification-container cohero-notification-container-lungFunctionTest">
-                </div>
-            </div>
-        </div>
         <div class="row-fluid">
-            <div class="col-xs-6 cohero-queue">
-                <div class="cohero-queue-header">
-                    <div class="col-xs-12">
-                        eMDI Queue
+            <div class="col-xs-4">
+                <!--emdi-->
+                <div class="cohero-row-notification">
+                    <div class="cohero-notification">
+                        <svg class="cohero-notification-circle-fg" viewbox="0 0 200 200">
+                            <circle class="path" cx="100" cy="100" r="95" />
+                        </svg>
+                        <svg class="cohero-notification-circle-bg" viewbox="0 0 200 200">
+                            <circle class="path" cx="100" cy="100" r="95" />
+                        </svg>
+                        <div class="cohero-notification-container cohero-notification-container-puffTaken">
+                        </div>
                     </div>
                 </div>
-                <div class="cohero-queue-container cohero-queue-puffTaken">
+                <div class="cohero-queue">
+                    <div class="cohero-queue-header">
+                        <div class="col-xs-12">
+                            eMDI Queue
+                        </div>
+                    </div>
+                    <div class="cohero-queue-container cohero-queue-puffTaken">
+                    </div>
                 </div>
             </div>
-            <div class="col-xs-6 cohero-queue">
-                <div class="cohero-queue-header">
-                    <div class="col-xs-12">
-                        mSpirometer Queue
+            <div class="col-xs-4">
+                <div class="cohero-row-notification">
+                    <div class="cohero-notification">
+                        <svg class="cohero-notification-circle-fg" viewbox="0 0 200 200">
+                        <circle class="path" cx="100" cy="100" r="95" />
+                    </svg>
+                        <svg class="cohero-notification-circle-bg" viewbox="0 0 200 200">
+                        <circle class="path" cx="100" cy="100" r="95" />
+                    </svg>
+                        <div class="cohero-notification-container cohero-notification-container-lungFunctionTest">
+                        </div>
                     </div>
                 </div>
-                <div class="cohero-queue-container cohero-queue-lungFunctionTest">
+                <div class="cohero-queue">
+                    <div class="cohero-queue-header">
+                        <div class="col-xs-12">
+                            mSpirometer Queue
+                        </div>
+                    </div>
+                    <div class="cohero-queue-container cohero-queue-lungFunctionTest">
+                    </div>
                 </div>
+            </div>
+            <div class="col-xs-4">
+                <!--log-->
+                    <div class="col-xs-12">
+                        <h2>Activity Log</h2>
+                    </div>
+                <div class="col-xs-12 cohero-activity-log-container">
+                    <table class="cohero-activity-log table">
+                        <thead>
+                            <th>
+                                Time
+                            </th>
+                            <th>
+                                Kiosk
+                            </th>
+                            <th colspan="4">
+                                Description
+                            </th>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
     </div>
@@ -94,12 +132,32 @@
                 </p>
             </div>
         </div>
-        <div class="template-cohero-count-puffTaken">
-            {{}}
-        </div>
-        <div class="template-cohero-count-lungFunctionTest">
-            {{}}
-        </div>
+        <script type="template" class="template-cohero-activity-log-item">
+            <tr>
+                {{#item}}
+                <td>
+                    {{localTimestamp}}
+                </td>
+                <td>
+                    {{title}}
+                </td>
+                {{/item}}
+                <td>
+                    {{description}}
+                </td>
+                {{#item}}
+                <td>
+                    {{#eventDetails.pef}}{{eventDetails.pef}} PEF{{/eventDetails.pef}}
+                </td>
+                <td>
+                    {{#eventDetails.fev1}}{{eventDetails.fev1}} FEV1{{/eventDetails.fev1}}
+                </td>
+                <td>
+                    {{#eventDetails.fvc}}{{eventDetails.fvc}} FVC{{/eventDetails.fvc}}
+                </td>
+                {{/item}}
+            </tr>
+        </script>
         <div class="template-cohero-queue-item">
             <div class="cohero-queue-item animated fadeInUp" data-id="{{eventId}}">
                 <div class="cohero-queue-item-time col-xs-3">
