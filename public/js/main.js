@@ -34,8 +34,27 @@ $(function() {
     templates['cohero-notification-lungFunctionTest'] = $('.template-cohero-notification-lungFunctionTest').html();
     templates['cohero-activity-log-item'] = $('.template-cohero-activity-log-item').html();
 
-    var socket = io();
-    socket.on('kioskEvent', kioskEventHandler);
+    /* using nodejs random event generator via socket.io*/
+    //var socket = io();
+    //socket.on('kioskEvent', kioskEventHandler);
+
+    /* using cohero servers */
+    var connection = $.hubConnection('http://35.163.78.124:11111/signalr/hubs');
+
+    var proxy = connection.createHubProxy('signalRHub');
+    proxy.on('recieveMessage', function(msg) {
+        kioskEventHandler(msg);
+        console.log(msg)
+    });
+
+    connection.start().done(function() {
+            console.log('Now connected, connection ID=' + connection.id);
+        })
+        .fail(function() {
+            console.log('Could not connect');
+        });
+
+
 
 });
 
@@ -79,20 +98,20 @@ function notifyQueuedItem(item) {
     }
 }
 
-function sendItemToActivityLog(item){
-  console.log('Event Sent to Activity Log', item.eventId);
-  var description;
-  if(item.eventType === "puffTaken"){
-    description = "eMDI Puff";
-  }
-  if(item.eventType === "lungFunctionTest"){
-    description = "Spirometry";
-  }
-  var renderedHTML = Mustache.to_html(templates['cohero-activity-log-item'], {
-    item: item,
-    description: description
-  });
-  $('.cohero-activity-log tbody').append(renderedHTML);
+function sendItemToActivityLog(item) {
+    console.log('Event Sent to Activity Log', item.eventId);
+    var description;
+    if (item.eventType === "puffTaken") {
+        description = "eMDI Puff";
+    }
+    if (item.eventType === "lungFunctionTest") {
+        description = "Spirometry";
+    }
+    var renderedHTML = Mustache.to_html(templates['cohero-activity-log-item'], {
+        item: item,
+        description: description
+    });
+    $('.cohero-activity-log tbody').append(renderedHTML);
 }
 
 function notifyPuffTaken(item) {
@@ -164,28 +183,30 @@ $.fn.marquisPuffTaken = function() {
     });
     setTimeout(function() {
         $container.children().eq(1).animateCSS('fadeInDown', {
-            callback: function() {
+            /*callback: function() {
                 $(this).animateCSS('fadeOutUp', {
                     delay: 1000,
                     callback: function() {
-                        $(this).hide();
+                        //$(this).hide();
                     }
                 });
-            }
+            }*/
         });
     }, 3000);
-    setTimeout(function() {
-        $container.children().eq(0).animateCSS('fadeInUp'/*, {
-            callback: function() {
-                $(this).animateCSS('fadeOut', {
-                    delay: 1000,
-                    callback: function() {
-                        $(this).hide();
+    /*setTimeout(function() {
+        $container.children().eq(0).animateCSS('fadeInUp'
+            , {
+                        callback: function() {
+                            $(this).animateCSS('fadeOut', {
+                                delay: 1000,
+                                callback: function() {
+                                    $(this).hide();
+                                }
+                            });
+                        }
                     }
-                });
-            }
-        }*/);
-    }, 6000);
+        );
+    }, 6000);*/
     return this;
 };
 
@@ -214,28 +235,32 @@ $.fn.marquisLungFunctionTest = function() {
         });
     }, 3000);
     setTimeout(function() {
-        $container.children().eq(2).animateCSS('fadeInUp'/*, {
-            callback: function() {
-                $(this).animateCSS('fadeOut', {
-                    delay: 1000,
-                    callback: function() {
-                        $(this).hide();
-                    }
-                });
-            }
-        }*/);
+        $container.children().eq(2).animateCSS('fadeInUp'
+            /*, {
+                        callback: function() {
+                            $(this).animateCSS('fadeOut', {
+                                delay: 1000,
+                                callback: function() {
+                                    $(this).hide();
+                                }
+                            });
+                        }
+                    }*/
+        );
     }, 6000);
     setTimeout(function() {
-        $container.children().eq(2).animateCSS('fadeInUp'/*, {
-            callback: function() {
-                $(this).animateCSS('fadeOutUp', {
-                    delay: 1000,
-                    callback: function() {
-                        $(this).hide();
-                    }
-                });
-            }
-        }*/);
+        $container.children().eq(2).animateCSS('fadeInUp'
+            /*, {
+                        callback: function() {
+                            $(this).animateCSS('fadeOutUp', {
+                                delay: 1000,
+                                callback: function() {
+                                    $(this).hide();
+                                }
+                            });
+                        }
+                    }*/
+        );
     }, 9000);
     return this;
 };

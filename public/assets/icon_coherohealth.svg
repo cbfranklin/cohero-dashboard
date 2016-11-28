@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="49px" height="44px" viewBox="0 0 49 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.1 (35376) - http://www.bohemiancoding.com/sketch -->
+    <title>Icons / icon_coherohealth</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Resize-for-TV" transform="translate(-13.000000, -15.000000)" fill="#FFFFFF">
+            <g id="Header" filter="url(#filter-1)" transform="translate(0.000000, 1.873504)">
+                <path d="M39.7894634,15.6106348 C36.6060247,14.6826471 32.9618252,14.8211527 29.8063114,15.8322437 C22.8530111,18.0483336 18.4129519,24.3780403 17.826529,31.4833784 C17.393693,39.5582559 21.9594143,47.2868693 29.9598984,49.6968671 C37.6252836,52.0099109 45.6536926,49.8076716 49.9960146,43.0347469 C51.9088703,40.0568761 53.0119039,37.0651548 52.9560541,33.5609627 C52.9420917,32.6606762 52.9141668,31.7880908 52.3556688,30.9709077 C51.434147,29.5997021 49.2978921,29.1980358 47.9435344,30.139874 C46.6729515,31.0124594 46.6031392,32.4113661 46.6171017,33.7687211 C46.6450266,36.0402132 46.0027538,37.8269357 45.8072795,38.2840042 C44.4948092,41.3726795 42.288742,43.284057 39.0773784,44.3089986 C31.4259556,46.7328469 23.8164202,40.8325076 23.7605704,33.0207908 C23.7047206,26.4556246 28.1587423,20.9985033 34.9026058,20.6660898 C38.1418943,20.499883 40.4038112,21.8018358 43.154414,23.2284437 C46.1423783,24.7797066 49.2141174,25.998556 52.6209553,25.8046482 C55.092309,25.6661425 59.7697299,23.8794201 57.4519631,20.0289639 C55.9579809,17.5220123 52.2718941,20.2505729 49.8424277,19.9458606 C46.0306787,19.4749415 43.3638507,16.6494269 39.7894634,15.6106348 Z" id="Icons-/-icon_coherohealth"></path>
+            </g>
+        </g>
+    </g>
+</svg>

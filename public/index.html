@@ -83,9 +83,9 @@
             </div>
             <div class="col-xs-4">
                 <!--log-->
-                    <div class="col-xs-12">
-                        <h2>Activity Log</h2>
-                    </div>
+                <div class="col-xs-12">
+                    <h2>Activity Log</h2>
+                </div>
                 <div class="col-xs-12 cohero-activity-log-container">
                     <table class="cohero-activity-log table">
                         <thead>
@@ -136,7 +136,7 @@
             <tr>
                 {{#item}}
                 <td>
-                    {{localTimestamp}}
+                    {{eventDetails.syncToDeviceTimeLocal}}
                 </td>
                 <td>
                     {{title}}
@@ -161,7 +161,7 @@
         <div class="template-cohero-queue-item">
             <div class="cohero-queue-item animated fadeInUp" data-id="{{eventId}}">
                 <div class="cohero-queue-item-time col-xs-3">
-                    {{localTimestamp}}
+                    {{eventDetails.syncToDeviceTimeLocal}}
                 </div>
                 <div class="cohero-queue-item-kiosk col-xs-9">
                     {{title}} kiosk
@@ -169,7 +169,10 @@
             </div>
         </div>
     </div>
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <!--<script src="bower_components/jquery/dist/jquery.min.js"></script>-->
+    <script   src="https://code.jquery.com/jquery-1.12.4.min.js"   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="   crossorigin="anonymous"></script>
+    <script type="text/javascript" src="http://35.163.78.124:11111/Scripts/jquery.signalR-1.1.4.min.js"></script>
+    <script type="text/javascript" src="http://35.163.78.124:11111/signalr/hubs"></script>
     <script src="bower_components/animateCSS/dist/jquery.animatecss.min.js"></script>
     <script src="bower_components/mustache.js/mustache.min.js"></script>
     <script src="bower_components/socket.io-client/socket.io.min.js"></script>
