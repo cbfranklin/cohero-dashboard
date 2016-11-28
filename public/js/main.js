@@ -79,10 +79,13 @@ function addQueueItem(item) {
 
 function removeQueueItem(id) {
     var $item = $('.cohero-queue-item[data-id="' + id + '"]');
-    $item.slideUp();
+
     setTimeout(function() {
-        $item.remove();
-    }, 4000);
+        $item.slideUp();
+        setTimeout(function() {
+            $item.remove();
+        }, 1000);
+    }, 3000);
 }
 
 function notifyQueuedItem(item) {
@@ -115,10 +118,10 @@ function sendItemToActivityLog(item) {
 function notifyPuffTaken(item) {
     inProgress.puffTaken = true;
     //remove MCG units to save space
-    item.eventDetails.medication = item.eventDetails.medication.replace(/ mcg/,'');
+    item.eventDetails.medication = item.eventDetails.medication.replace(/ mcg/, '');
     var count = counts.puffTaken;
     var gt1 = false;
-    if(count > 1){
+    if (count > 1) {
         gt1 = true;
     }
     var renderedHTML = Mustache.to_html(templates['cohero-notification-puffTaken'], {
@@ -139,11 +142,11 @@ function notifyLungFunctionTest(item) {
     inProgress.lungFunctionTest = true;
     var count = counts.lungFunctionTest;
     var gt1 = false;
-    if(count > 1){
+    if (count > 1) {
         gt1 = true;
     }
     //let's round!
-    item.eventDetails.pef = +((item.eventDetails.pef*60).toFixed(0));
+    item.eventDetails.pef = +((item.eventDetails.pef * 60).toFixed(0));
     item.eventDetails.fev1 = +((item.eventDetails.fev1).toFixed(2));
     item.eventDetails.fvc = +((item.eventDetails.fvc).toFixed(2));
     var renderedHTML = Mustache.to_html(templates['cohero-notification-lungFunctionTest'], {
@@ -170,8 +173,7 @@ function checkForQueuedItems(type) {
                 item.queued = false;
                 notifyQueuedItem(item);
                 sendItemToActivityLog(item);
-
-                //removeQueueItem(item.eventId);
+                removeQueueItem(item.eventId);
                 found = true;
                 break;
             }
