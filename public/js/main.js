@@ -82,7 +82,7 @@ function removeQueueItem(id) {
     $item.slideUp();
     setTimeout(function() {
         $item.remove();
-    }, 1000);
+    }, 4000);
 }
 
 function notifyQueuedItem(item) {
@@ -170,7 +170,7 @@ function checkForQueuedItems(type) {
                 item.queued = false;
                 notifyQueuedItem(item);
                 sendItemToActivityLog(item);
-                setTimeout(removeQueueItem,3000,item.eventId)
+
                 //removeQueueItem(item.eventId);
                 found = true;
                 break;
