@@ -44,7 +44,7 @@ $(function() {
     var proxy = connection.createHubProxy('signalRHub');
     proxy.on('recieveMessage', function(msg) {
         kioskEventHandler(msg);
-        console.log(msg)
+        console.log(msg);
     });
 
     connection.start().done(function() {
