@@ -7,8 +7,8 @@
     <title>Cohero Demo</title>
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="bower_components/animate.css/animate.min.css" rel="stylesheet">
-    <link href="css/proxima-nova.css" rel="stylesheet">
-    <link href="css/museo.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="css/museo-sans-rounded.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
 </head>
 
@@ -84,7 +84,7 @@
             <div class="col-xs-4">
                 <!--log-->
                 <div class="col-xs-12">
-                    <h2>Activity Log</h2>
+                    <h2 class="cohero-actvity-log-header">Activity Log</h2>
                 </div>
                 <div class="col-xs-12 cohero-activity-log-container">
                     <table class="cohero-activity-log table">
@@ -148,9 +148,11 @@
                 {{#item}}
                 <td>
                     {{#eventDetails.pef}}{{eventDetails.pef}} PEF{{/eventDetails.pef}}
+                    {{#eventDetails.medication}}{{eventDetails.medication}}{{/eventDetails.medication}}
                 </td>
                 <td>
                     {{#eventDetails.fev1}}{{eventDetails.fev1}} FEV1{{/eventDetails.fev1}}
+                    {{#eventDetails.medicationType}}{{eventDetails.medicationType}}{{/eventDetails.medicationType}}
                 </td>
                 <td>
                     {{#eventDetails.fvc}}{{eventDetails.fvc}} FVC{{/eventDetails.fvc}}

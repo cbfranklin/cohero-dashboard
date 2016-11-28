@@ -42,10 +42,7 @@ $(function() {
     var connection = $.hubConnection('http://35.163.78.124:11111/signalr/hubs');
 
     var proxy = connection.createHubProxy('signalRHub');
-    proxy.on('recieveMessage', function(msg) {
-        kioskEventHandler(msg);
-        console.log(msg);
-    });
+    proxy.on('recieveMessage', kioskEventHandler);
 
     connection.start().done(function() {
             console.log('Now connected, connection ID=' + connection.id);
@@ -60,7 +57,7 @@ $(function() {
 
 function kioskEventHandler(msg) {
     console.log('Event Recieved', msg.eventId);
-    //console.table(msg);
+    console.table(msg);
     addQueueItem(msg);
 }
 
@@ -131,6 +128,10 @@ function notifyPuffTaken(item) {
 
 function notifyLungFunctionTest(item) {
     inProgress.lungFunctionTest = true;
+    //let's round!
+    item.eventDetails.pef = +((item.eventDetails.pef*60).toFixed(0));
+    item.eventDetails.fev1 = +((item.eventDetails.fev1).toFixed(2));
+    item.eventDetails.fvc = +((item.eventDetails.fvc).toFixed(2));
     var renderedHTML = Mustache.to_html(templates['cohero-notification-lungFunctionTest'], {
         item: item,
         count: counts.lungFunctionTest
