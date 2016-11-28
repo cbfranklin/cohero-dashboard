@@ -39,13 +39,14 @@ $(function() {
     //socket.on('kioskEvent', kioskEventHandler);
 
     /* using cohero servers */
-    var connection = $.hubConnection('http://35.163.78.124:11111/signalr/hubs');
+    var coheroHub = $.hubConnection('http://35.163.78.124:11111/signalr/hubs');
 
-    var proxy = connection.createHubProxy('signalRHub');
+    var proxy = coheroHub.createHubProxy('signalRHub');
     proxy.on('recieveMessage', kioskEventHandler);
 
-    connection.start().done(function() {
-            console.log('Now connected, connection ID=' + connection.id);
+    coheroHub.start().done(function() {
+            console.log('Connected to Cohero Hub');
+            console.log('Connection ID=' + coheroHub.id);
         })
         .fail(function() {
             console.log('Could not connect');
@@ -113,9 +114,17 @@ function sendItemToActivityLog(item) {
 
 function notifyPuffTaken(item) {
     inProgress.puffTaken = true;
+    //remove MCG units to save space
+    item.eventDetails.medication = item.eventDetails.medication.replace(/ mcg/,'');
+    var count = counts.puffTaken;
+    var gt1 = false;
+    if(count > 1){
+        gt1 = true;
+    }
     var renderedHTML = Mustache.to_html(templates['cohero-notification-puffTaken'], {
         item: item,
-        count: counts.puffTaken
+        count: count,
+        gt1: gt1
     });
     var $notification = $('.cohero-notification-container-puffTaken');
     $notification.html(renderedHTML).marquisPuffTaken();
@@ -128,13 +137,18 @@ function notifyPuffTaken(item) {
 
 function notifyLungFunctionTest(item) {
     inProgress.lungFunctionTest = true;
+    var count = counts.lungFunctionTest;
+    var gt1 = false;
+    if(count > 1){
+        gt1 = true;
+    }
     //let's round!
     item.eventDetails.pef = +((item.eventDetails.pef*60).toFixed(0));
     item.eventDetails.fev1 = +((item.eventDetails.fev1).toFixed(2));
     item.eventDetails.fvc = +((item.eventDetails.fvc).toFixed(2));
     var renderedHTML = Mustache.to_html(templates['cohero-notification-lungFunctionTest'], {
         item: item,
-        count: counts.lungFunctionTest
+        count: count
     });
     var $notification = $('.cohero-notification-container-lungFunctionTest');
     $notification.html(renderedHTML).marquisLungFunctionTest();
@@ -156,7 +170,8 @@ function checkForQueuedItems(type) {
                 item.queued = false;
                 notifyQueuedItem(item);
                 sendItemToActivityLog(item);
-                removeQueueItem(item.eventId);
+                setTimeout(removeQueueItem,3000,item.eventId)
+                //removeQueueItem(item.eventId);
                 found = true;
                 break;
             }
