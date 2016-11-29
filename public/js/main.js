@@ -5,6 +5,8 @@ var counts = {
     "lungFunctionTest": 0
 };
 
+var activityLog = [];
+
 var data = {
     "puffTaken": [],
     "lungFunctionTest": []
@@ -15,28 +17,29 @@ var inProgress = {
     "lungFunctionTest": false
 };
 
-var chrome = /chrom(e|ium)/.test(navigator.userAgent.toLowerCase());
+
 
 
 $(function() {
+
+    testForChrome();
+
+    loadTemplates();
+
+    loadActivityLog();
+
+    connectToCoheroHub();
+
+});
+
+function testForChrome() {
+    var chrome = /chrom(e|ium)/.test(navigator.userAgent.toLowerCase());
     if (!chrome) {
         alert('I am designed for use in Google Chrome & Chromium only.');
     }
+}
 
-    /*
-    if (localStorage['cohero-events']) {
-    data = JSON.parse(localStorage['cohero-events'])
-  }
-    */
-
-    templates['cohero-queue-item'] = $('.template-cohero-queue-item').html();
-    templates['cohero-notification-puffTaken'] = $('.template-cohero-notification-puffTaken').html();
-    templates['cohero-notification-lungFunctionTest'] = $('.template-cohero-notification-lungFunctionTest').html();
-    templates['cohero-activity-log-item'] = $('.template-cohero-activity-log-item').html();
-
-    /* using nodejs random event generator via socket.io*/
-    //var socket = io();
-    //socket.on('kioskEvent', kioskEventHandler);
+function connectToCoheroHub() {
 
     /* using cohero servers */
     var coheroHub = $.hubConnection('http://35.163.78.124:11111/signalr/hubs');
@@ -51,10 +54,23 @@ $(function() {
         .fail(function() {
             console.log('Could not connect');
         });
+}
 
+function loadTemplates() {
+    templates['cohero-queue-item'] = $('.template-cohero-queue-item').html();
+    templates['cohero-notification-puffTaken'] = $('.template-cohero-notification-puffTaken').html();
+    templates['cohero-notification-lungFunctionTest'] = $('.template-cohero-notification-lungFunctionTest').html();
+    templates['cohero-activity-log-item'] = $('.template-cohero-activity-log-item').html();
+}
 
+function randomData(){
 
-});
+    console.log('Using nodejs random event generator via socket.io');
+
+    var socket = io();
+    socket.on('kioskEvent', kioskEventHandler);
+
+}
 
 function kioskEventHandler(msg) {
     console.log('Event Recieved', msg.eventId);
@@ -99,20 +115,50 @@ function notifyQueuedItem(item) {
     }
 }
 
+function loadActivityLog() {
+    if (localStorage['cohero-activity-log']) {
+        console.log('Cached Activity Found. Loading...');
+        activityLog = JSON.parse(localStorage['cohero-activity-log']);
+        renderActivityLog(activityLog);
+    }
+    else{
+        console.log('No Cached Activity Found');
+    }
+}
+
+function renderActivityLog(log) {
+    var renderedHTML = Mustache.to_html(templates['cohero-activity-log-item'], {
+        item: log
+    });
+
+    //render to DOM
+    $('.cohero-activity-log tbody').append(renderedHTML);
+}
+
 function sendItemToActivityLog(item) {
     console.log('Event Sent to Activity Log', item.eventId);
-    var description;
+
     if (item.eventType === "puffTaken") {
-        description = "eMDI Puff";
+        item.eventLogDescripton = "eMDI Puff";
     }
     if (item.eventType === "lungFunctionTest") {
-        description = "Spirometry";
+        item.eventLogDescripton = "Spirometry";
     }
+
     var renderedHTML = Mustache.to_html(templates['cohero-activity-log-item'], {
-        item: item,
-        description: description
+        item: item
     });
+
+    //render to DOM
     $('.cohero-activity-log tbody').append(renderedHTML);
+    //push to log to be cached
+    activityLog.push(item);
+    //cache to localStorage
+    cacheActivityLog();
+}
+
+function cacheActivityLog(){
+    localStorage.setItem('cohero-activity-log', JSON.stringify(activityLog));
 }
 
 function notifyPuffTaken(item) {

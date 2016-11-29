@@ -31,7 +31,7 @@ function randomEvent() {
     //lungFunctionTest
     if (eventType === 2) {
         event = eventTemplates.lungFunctionTest;
-        var randomPef = Math.floor((Math.random() * 200) + 400);
+        var randomPef = Math.floor((Math.random() * 200) + 400)/600;
         event.eventDetails.pef = randomPef;
         event.eventId = 'LF-100' + randomId;
     }
@@ -94,7 +94,7 @@ eventTemplates.lungFunctionTest = {
     "localTimestamp": "20:12:30",
     "utcTimestamp": "16:12:30",
     "eventDetails": { /*This object will be different for puffs vs. lung function tests*/
-        "pef": 531.22,
+        "pef": 8.85,
         "fev1": 4.32,
         "fvc": 326.98,
         "eventTimeLocal": "20:12:30",

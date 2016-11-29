@@ -133,32 +133,17 @@
             </div>
         </div>
         <script type="template" class="template-cohero-activity-log-item">
+            {{#item}}
             <tr>
-                {{#item}}
-                <td>
-                    {{eventDetails.syncToDeviceTimeLocal}}
-                </td>
-                <td>
-                    {{title}}
-                </td>
-                {{/item}}
-                <td>
-                    {{description}}
-                </td>
-                {{#item}}
-                <td>
-                    {{#eventDetails.pef}}{{eventDetails.pef}} PEF{{/eventDetails.pef}}
-                    {{#eventDetails.medication}}{{eventDetails.medication}}{{/eventDetails.medication}}
-                </td>
-                <td>
-                    {{#eventDetails.fev1}}{{eventDetails.fev1}} FEV1{{/eventDetails.fev1}}
-                    {{#eventDetails.medicationType}}{{eventDetails.medicationType}}{{/eventDetails.medicationType}}
-                </td>
-                <td>
-                    {{#eventDetails.fvc}}{{eventDetails.fvc}} FVC{{/eventDetails.fvc}}
-                </td>
-                {{/item}}
+                <td>{{eventDetails.syncToDeviceTimeLocal}}</td>
+                <td>{{title}}</td>
+                <td>{{eventLogDescripton}}</td>
+                <td>{{#eventDetails.pef}}{{eventDetails.pef}} PEF{{/eventDetails.pef}}{{#eventDetails.medication}}{{eventDetails.medication}}{{/eventDetails.medication}}</td>
+                <td>{{#eventDetails.fev1}}{{eventDetails.fev1}} FEV1{{/eventDetails.fev1}}{{#eventDetails.medicationType}}{{eventDetails.medicationType}}{{/eventDetails.medicationType}}</td>
+                <td>{{#eventDetails.fvc}}{{eventDetails.fvc}} FVC{{/eventDetails.fvc}}</td>
+
             </tr>
+            {{/item}}
         </script>
         <div class="template-cohero-queue-item">
             <div class="cohero-queue-item animated fadeInUp" data-id="{{eventId}}">
@@ -172,7 +157,7 @@
         </div>
     </div>
     <!--<script src="bower_components/jquery/dist/jquery.min.js"></script>-->
-    <script   src="https://code.jquery.com/jquery-1.12.4.min.js"   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="   crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="http://35.163.78.124:11111/Scripts/jquery.signalR-1.1.4.min.js"></script>
     <script type="text/javascript" src="http://35.163.78.124:11111/signalr/hubs"></script>
     <script src="bower_components/animateCSS/dist/jquery.animatecss.min.js"></script>
