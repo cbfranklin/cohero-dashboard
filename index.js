@@ -31,7 +31,7 @@ function randomEvent() {
     //lungFunctionTest
     if (eventType === 2) {
         event = eventTemplates.lungFunctionTest;
-        var randomPef = Math.floor((Math.random() * 200) + 400)/600;
+        var randomPef = Math.floor((Math.random() * 200) + 400)/6000;
         event.eventDetails.pef = randomPef;
         event.eventId = 'LF-100' + randomId;
     }
