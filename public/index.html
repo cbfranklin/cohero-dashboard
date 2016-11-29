@@ -18,12 +18,12 @@
             <h1><center>I am designed for use in portrait orientation only.</center></h1>
         </div>
     </div>
-    <div class="container-fluid">
+    <!-- <div class="row-fluid">
         <nav class="navbar navbar-default cohero-navbar">
             <div class="container-fluid">
                 <div class="navbar-header cohero-header">
                     <div class="cohero-logo">
-                        <img src="assets/icon_coherohealth.svg" />
+                        <img src="assets/Cohero%20Logo_Horizontal_White.svg" />
                     </div>
                     <div class="cohero-emdi-logo">
                         <img src="assets/eMDI%20LOGO.svg" />
@@ -31,6 +31,14 @@
                 </div>
             </div>
         </nav>
+    </div> -->
+    <div class="row-fluid cohero-new-header">
+        <div class="cohero-logo">
+            <img src="assets/Cohero%20Logo_Horizontal_White.svg" />
+        </div>
+        <div class="cohero-emdi-logo">
+            <img src="assets/eMDI%20LOGO.svg" />
+        </div>
     </div>
     <div class="container-fluid">
         <div class="row-fluid">
@@ -115,7 +123,7 @@
             </div>
             <div class="cohero-notification-item">
                 <p>
-                    <span class="count">{{count}}</span> Puff{{#gt1}}s{{/gt1}} Synched
+                    <span class="count">{{count}}</span> Puff{{#gt1}}s{{/gt1}} synced
                 </p>
             </div>
         </div>
@@ -128,7 +136,7 @@
             </div>
             <div class="cohero-notification-item animated fadeInUp">
                 <p>
-                    <span class="count">{{count}}</span> Spirometer Test{{#gt1}}s{{/gt1}}
+                    <span class="count">{{count}}</span> Spirometry test{{#gt1}}s{{/gt1}}
                 </p>
             </div>
         </div>
@@ -141,7 +149,6 @@
                 <td>{{#eventDetails.pef}}{{eventDetails.pef}} PEF{{/eventDetails.pef}}{{#eventDetails.medication}}{{eventDetails.medication}}{{/eventDetails.medication}}</td>
                 <td>{{#eventDetails.fev1}}{{eventDetails.fev1}} FEV1{{/eventDetails.fev1}}{{#eventDetails.medicationType}}{{eventDetails.medicationType}}{{/eventDetails.medicationType}}</td>
                 <td>{{#eventDetails.fvc}}{{eventDetails.fvc}} FVC{{/eventDetails.fvc}}</td>
-
             </tr>
             {{/item}}
         </script>
@@ -157,7 +164,7 @@
         </div>
     </div>
     <!--<script src="bower_components/jquery/dist/jquery.min.js"></script>-->
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="js/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="http://35.163.78.124:11111/Scripts/jquery.signalR-1.1.4.min.js"></script>
     <script type="text/javascript" src="http://35.163.78.124:11111/signalr/hubs"></script>
     <script src="bower_components/animateCSS/dist/jquery.animatecss.min.js"></script>

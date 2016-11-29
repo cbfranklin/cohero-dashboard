@@ -17,6 +17,8 @@ var inProgress = {
     "lungFunctionTest": false
 };
 
+var socket;
+
 
 
 
@@ -28,6 +30,8 @@ $(function() {
 
     loadActivityLog();
 
+    connectToSocket();
+
     connectToCoheroHub();
 
 });
@@ -37,6 +41,11 @@ function testForChrome() {
     if (!chrome) {
         alert('I am designed for use in Google Chrome & Chromium only.');
     }
+}
+
+function connectToSocket(){
+    socket = io();
+    console.log('Connected to Socket.io');
 }
 
 function connectToCoheroHub() {
@@ -67,7 +76,6 @@ function randomData(){
 
     console.log('Using nodejs random event generator via socket.io');
 
-    var socket = io();
     socket.on('kioskEvent', kioskEventHandler);
 
 }
@@ -88,20 +96,20 @@ function addQueueItem(item) {
     data[type].push(item);
     counts[type] += 1;
 
-    setTimeout(checkForQueuedItems, 2000, type);
+    setTimeout(checkForQueuedItems, 1000, type);
 
     console.log('Event Queued', item.eventId);
 }
 
 function removeQueueItem(id) {
     var $item = $('.cohero-queue-item[data-id="' + id + '"]');
-
+    $item.addClass('cohero-queue-item-active');
     setTimeout(function() {
         $item.slideUp();
         setTimeout(function() {
             $item.remove();
         }, 1000);
-    }, 3000);
+    }, 5000);
 }
 
 function notifyQueuedItem(item) {
@@ -127,6 +135,8 @@ function loadActivityLog() {
 }
 
 function renderActivityLog(log) {
+    //reverse reverse!
+    log = log.reverse();
     var renderedHTML = Mustache.to_html(templates['cohero-activity-log-item'], {
         item: log
     });
@@ -150,7 +160,7 @@ function sendItemToActivityLog(item) {
     });
 
     //render to DOM
-    $('.cohero-activity-log tbody').append(renderedHTML);
+    $('.cohero-activity-log tbody').prepend(renderedHTML);
     //push to log to be cached
     activityLog.push(item);
     //cache to localStorage

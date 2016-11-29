@@ -3,7 +3,8 @@ body {
     color: #fff;
     background: #167ce2;
 }
-h1,h2,h3,h4,h5,strong{
+
+h1, h2, h3, h4, h5, strong {
     font-family: "Museo-700"
 }
 
@@ -11,19 +12,36 @@ html {
     height: 100%;
     overflow: hidden;
 }
-h2{
-    font-size:4vh;
+
+h2 {
+    font-size: 4vh;
 }
 
-.cohero-header{
-    width:100%;
-    padding:1vh 0 0.5vh 0;
+.cohero-header {
+    width: 100%;
+    padding: 1vh 0 0.5vh 0;
 }
-.cohero-logo{
-    float:left;
+
+.cohero-new-header {
+    padding: 4.5vh 4.5vh 7.5vh 4.5vh;
+    overflow: hidden;
 }
-.cohero-emdi-logo{
-    float:right;
+
+.cohero-logo {
+    float: left;
+}
+
+.cohero-logo img {
+    width: 25vh;
+    height: auto;
+}
+
+.cohero-emdi-logo {
+    float: right;
+}
+
+.cohero-emdi-logo img {
+    width: 9vh;
 }
 
 .cohero-portrait {
@@ -43,7 +61,8 @@ h2{
 .cohero-navbar {
     background: rgba(255, 255, 255, 0.1);
     border: 0;
-    box-shadow: 0 0.6em 0.3em -0.3em rgba(0, 0, 0, 0.3);
+    /*box-shadow: 0 0.6em 0.3em -0.3em rgba(0, 0, 0, 0.3);*/
+    min-height: 75px;
 }
 
 .navbar-brand a {
@@ -73,7 +92,7 @@ h2{
     margin: 0 auto;
     fill: #fff;
     stroke: #63a8ed;
-    stroke-width: 8;
+    stroke-width: 4;
     stroke-miterlimit: 10;
     padding: 2.5vh 0;
     box-sizing: content-box;
@@ -87,7 +106,7 @@ h2{
     margin: 0 auto;
     fill: transparent;
     stroke: #63a8ed;
-    stroke-width: 8;
+    stroke-width: 4;
     stroke-miterlimit: 10;
     background: #167ce2;
     background: radial-gradient(circle at center, transparent 28%, #167ce2 25.5%);
@@ -100,7 +119,7 @@ h2{
 .cohero-notification-container {
     width: 50%;
     height: 42.5vh;
-    padding-top:2.5vh;
+    padding-top: 2.5vh;
     left: 25%;
     position: absolute;
     z-index: 100;
@@ -131,7 +150,7 @@ h2{
 
 .cohero-notification-item .count {
     font-size: 4em;
-    line-height: 1.3em;
+    line-height: 1em;
     display: block;
     font-family: "museo_sans_rounded-500", sans-serif;
 }
@@ -153,28 +172,30 @@ h2{
 }
 
 .cohero-queue-header {
-    background: rgba(255, 255, 255, 0.1);
     padding: 0.3em 0.3em;
     margin-bottom: 0.3em;
-    box-shadow: 0 0.6em 0.3em -0.3em rgba(0, 0, 0, 0.3);
+    /*background: rgba(255, 255, 255, 0.1);*/
+    /*box-shadow: 0 0.6em 0.3em -0.3em rgba(0, 0, 0, 0.3);*/
     overflow: hidden;
     font-size: 3.5vh;
     font-family: 'museo_sans_rounded-300', sans-serif;
 }
-.cohero-actvity-log-header{
+
+.cohero-actvity-log-header {
     font-family: 'museo_sans_rounded-300', sans-serif;
 }
-
 
 .cohero-queue-container {
     height: 50vh;
     overflow: hidden;
     font-size: 3vh;
 }
-.cohero-queue-item{
-    border-bottom:1px solid rgba(0,0,0,0.3);
-    overflow:hidden;
+
+.cohero-queue-item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    overflow: hidden;
 }
+
 .cohero-queue-item-time, .cohero-queue-item-kiosk {
     height: 100%;
     padding: 0.3em 0.5em;
@@ -188,34 +209,43 @@ h2{
     background: rgba(255, 255, 255, 0.3);
 }
 
-.cohero-activity-log-container{
-    font-size:1.5vh;
-    height:85vh;
+.cohero-queue-item-active {
+    background: #47c1a6;
+    -webkit-transition: background 0.5s;
+}
+
+.cohero-activity-log-container {
+    font-size: 1.5vh;
+    height: 85vh;
     font-family: "Open Sans", sans-serif;
 }
-.cohero-activity-log td{
-    padding:0.25vh 0;
+
+.cohero-activity-log td {
+    padding: 0.25vh 0;
 }
-.cohero-activity-log th{
-    background:rgba(255,255,255,0.1);
-    border:none!important;
+
+.cohero-activity-log th {
+    background: rgba(255, 255, 255, 0.1);
+    border: none!important;
 }
-.cohero-activity-log td{
-    border-top:0!important;
+
+.cohero-activity-log td {
+    border-top: 0!important;
 }
+
 .cohero-activity-log tr:nth-child(even) {
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
 }
-.fadeInWobble
-{
-    -webkit-animation: swing 1s,
-    fadeIn 1s;
-    animation: swing 1s,
-    fadeIn 1s;
+
+.fadeInWobble {
+    -webkit-animation: swing 1s, fadeIn 1s;
+    animation: swing 1s, fadeIn 1s;
 }
-.cohero-activity-log-container{
+
+.cohero-activity-log-container {
     overflow-y: scroll;
 }
+
 ::-webkit-scrollbar {
     display: none;
 }
