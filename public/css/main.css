@@ -183,6 +183,8 @@ h2 {
 
 .cohero-actvity-log-header {
     font-family: 'museo_sans_rounded-300', sans-serif;
+    margin-top: 0;
+    margin-bottom: 4vh;
 }
 
 .cohero-queue-container {
