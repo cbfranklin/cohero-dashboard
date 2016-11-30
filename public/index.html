@@ -37,7 +37,8 @@
             <img src="assets/Cohero%20Logo_Horizontal_White.svg" />
         </div>
         <div class="cohero-emdi-logo">
-            <img src="assets/eMDI%20LOGO.svg" />
+            <img src="assets/emdi-logo-no-shadow.svg" />
+            <!-- <img src="assets/eMDI%20LOGO.svg" /> -->
         </div>
     </div>
     <div class="container-fluid">
@@ -142,7 +143,7 @@
         <div class="template-cohero-notification-count">
             <div class="cohero-notification-item">
                 <p>
-                    <span class="count">{{count}}</span> Puff{{#gt1}}s{{/gt1}} synced
+                    <span class="count">{{count}}</span> {{typeText}}{{#gt1}}s{{/gt1}}
                 </p>
             </div>
         </div>
@@ -155,7 +156,7 @@
             </div>
             <div class="cohero-notification-item">
                 <p>
-                    <span class="count">{{count}}</span> Puff{{#gt1}}s{{/gt1}} synced
+                    <span class="count">{{count}}</span> {{item.eventDetails.medicationType}} Puff{{#gt1}}s{{/gt1}}
                 </p>
             </div>
         </div>

@@ -56,7 +56,7 @@ var admin = {
         window.location.reload();
     },
     stopRandomData: function(){
-        console.log('Stopping random events...')
+        console.log('Stopping random events...');
         socket.removeListener('kioskEvent');
     }
 
@@ -213,10 +213,21 @@ function renderEventCounts() {
         if (count > 1) {
             gt1 = true;
         }
+        var typeText;
+        if(type === "puffControl"){
+            typeText = "Control Puff";
+        }
+        if(type === "puffRescue"){
+            typeText = "Rescue Puff";
+        }
+        if(type === "lungFunctionTest"){
+            typeText = "Spirometry Test";
+        }
         if(count > 0){
             var renderedHTML = Mustache.to_html(templates['cohero-notification-count'], {
                 count: count,
-                gt1: gt1
+                gt1: gt1,
+                typeText: typeText
             });
             var $notification = $('.cohero-notification-container-' + type);
             $notification.html(renderedHTML);
