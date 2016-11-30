@@ -26,6 +26,15 @@ function randomEvent() {
         event = eventTemplates.puffTaken;
 
         event.eventId = 'P-100' + randomId;
+
+        var medicationType = Math.floor((Math.random() * 2) + 1);
+
+        if (medicationType === 1) {
+            event.eventDetails.medicationType = "Control";
+        }
+        if(medicationType === 2){
+          event.eventDetails.medicationType = "Rescue";
+        }
     }
 
     //lungFunctionTest
