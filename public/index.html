@@ -175,8 +175,8 @@
         </div>
         <script type="template" class="template-cohero-activity-log-item">
             {{#item}}
-            <tr>
-                <td>{{eventDetails.syncToDeviceTimeLocal}}</td>
+            <tr class="animated fadeIn">
+                <td>{{eventDetails.eventTimeLocal}}</td>
                 <td>{{title}}</td>
                 <td>{{eventLogDescripton}}</td>
                 <td>{{#eventDetails.pef}}{{eventDetails.pef}} PEF{{/eventDetails.pef}}{{#eventDetails.medication}}{{eventDetails.medication}}{{/eventDetails.medication}}</td>
@@ -197,7 +197,7 @@
         </div>
     </div>
     <!--<script src="bower_components/jquery/dist/jquery.min.js"></script>-->
-    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="http://35.163.78.124:11111/Scripts/jquery.signalR-1.1.4.min.js"></script>
     <script type="text/javascript" src="http://35.163.78.124:11111/signalr/hubs"></script>
     <script src="bower_components/animateCSS/dist/jquery.animatecss.min.js"></script>

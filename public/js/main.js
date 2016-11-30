@@ -148,6 +148,8 @@ function addQueueItem(item) {
     var $queue = $('.cohero-queue-' + type);
     $queue.append(renderedHTML);
 
+    sendItemToActivityLog(item);
+    
     item.queued = true;
     data[type].push(item);
     counts[type] += 1;
@@ -334,7 +336,9 @@ function checkForQueuedItems(type) {
                 var item = dataOfType[i];
                 item.queued = false;
                 notifyQueuedItem(item);
-                sendItemToActivityLog(item);
+                //this is where we did this when the activityLog came AFTER the notification.
+                //now it is in sync
+                //sendItemToActivityLog(item);
                 removeQueueItem(item.eventId);
                 found = true;
                 break;

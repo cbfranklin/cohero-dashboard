@@ -19,7 +19,8 @@
     "animate.css": "^3.5.2",
     "socket.io-client": "^1.6.0",
     "mustache.js": "mustache#^2.3.0",
-    "animateCSS": "^1.2.1"
+    "animateCSS": "^1.2.1",
+    "jquery": "1.12.4"
   },
   "resolutions": {
     "animate.css": "^3.5.2"

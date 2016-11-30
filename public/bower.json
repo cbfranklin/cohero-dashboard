@@ -21,7 +21,13 @@
     "animate.css": "^3.5.2",
     "socket.io-client": "^1.6.0",
     "mustache.js": "mustache#^2.3.0",
-    "animateCSS": "^1.2.1"
+    "animateCSS": "^1.2.1",
+    "datatables.net": "^1.10.12",
+    "datatables.net-bs": "^1.10.12",
+    "datatables.net-responsive": "^2.1.0",
+    "datatables.net-responsive-bs": "^2.1.0",
+    "datatables.net-fixedheader": "^3.1.2",
+    "datatables.net-fixedheader-bs": "^3.1.2"
   },
   "resolutions": {
     "animate.css": "^3.5.2"
