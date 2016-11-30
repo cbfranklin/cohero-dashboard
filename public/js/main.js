@@ -36,6 +36,8 @@ $(function() {
 
     connectToCoheroHub();
 
+    handleRemoteEvents();
+
 });
 
 var admin = {
@@ -46,8 +48,12 @@ var admin = {
         setTimeout(window.location.reload.bind(window.location), 1000);
     },
     randomData: function() {
-        console.log('Using nodejs random event generator via socket.io');
+        console.log('Generating random events');
         socket.on('kioskEvent', kioskEventHandler);
+    },
+    reloadPage: function(){
+        console.log('Reloading page...');
+        window.location.reload();
     }
 
 };
@@ -87,6 +93,15 @@ function loadTemplates() {
     templates['cohero-notification-lungFunctionTest'] = $('.template-cohero-notification-lungFunctionTest').html();
     templates['cohero-activity-log-item'] = $('.template-cohero-activity-log-item').html();
     templates['cohero-notification-count'] = $('.template-cohero-notification-count').html();
+}
+
+function handleRemoteEvents(){
+    socket.on('remoteEvent', remoteEventHandler);
+}
+function remoteEventHandler(msg){
+    console.log('Remote Event Recieved', msg);
+    var directive = msg.directive;
+    admin[directive]();
 }
 
 function kioskEventHandler(msg) {

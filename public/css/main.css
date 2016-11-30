@@ -6,13 +6,13 @@
 }
 
 body {
-    font-family: "Museo-300", sans-serif;
+    font-family: "Open Sans", sans-serif;
     color: #fff;
     background: var(--cohero-background-blue);
 }
 
 h1, h2, h3, h4, h5, strong {
-    font-family: "Museo-700"
+    font-family: "museo_sans_rounded-500";
 }
 
 html {
