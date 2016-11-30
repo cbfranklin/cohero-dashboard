@@ -1,0 +1,20 @@
+:root{
+  --cohero-background-blue: #167ce2;
+  --cohero-accent-blue: #63a8ed;
+  --cohero-accent-red: red;
+  --cohero-accent-purple: purple;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    color: #fff;
+    background: var(--cohero-background-blue);
+}
+
+h1, h2, h3, h4, h5, strong {
+    font-family: "museo_sans_rounded-500";
+    text-align:center;
+}
+.cohero-remote-options{
+  text-align: center;
+}

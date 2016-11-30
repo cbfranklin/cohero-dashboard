@@ -1,0 +1,27 @@
+{
+  "name": "cohero-demo-remote",
+  "authors": [
+    "Connor <cononrbfranklin@gmail.com>"
+  ],
+  "description": "",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "animate.css": "^3.5.2",
+    "socket.io-client": "^1.6.0",
+    "mustache.js": "mustache#^2.3.0",
+    "animateCSS": "^1.2.1"
+  },
+  "resolutions": {
+    "animate.css": "^3.5.2"
+  }
+}
