@@ -1,8 +1,9 @@
 :root{
   --cohero-background-blue: #167ce2;
   --cohero-accent-blue: #63a8ed;
-  --cohero-accent-red: red;
-  --cohero-accent-purple: purple;
+  --cohero-accent-red: #ff3333;
+  --cohero-accent-purple: #7d0ce8;
+  --cohero-accent-green: #51b19c;
 }
 
 body {
@@ -169,7 +170,7 @@ h2 {
 }
 
 .cohero-notification-item .spirometer-kiosk {
-    color: #51b19c;
+    color: var(--cohero-accent-green);
     display: block;
 }
 
