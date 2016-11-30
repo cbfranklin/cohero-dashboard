@@ -54,6 +54,10 @@ var admin = {
     reloadPage: function(){
         console.log('Reloading page...');
         window.location.reload();
+    },
+    stopRandomData: function(){
+        console.log('Stopping random events...')
+        socket.removeListener('kioskEvent');
     }
 
 };
