@@ -62,13 +62,16 @@ var admin = {
         window.location.reload();
     },
     toggleActivityLog: function() {
-        $('.cohero-activity-log-overlay:hidden').animateCSS('zoomIn');
         $('.cohero-activity-log-overlay:visible').animateCSS('zoomOut', {
             callback: function() {
                 $(this).hide();
             }
         });
-
+        $('.cohero-activity-log-overlay:hidden').animateCSS('zoomIn', {
+            callback: function() {
+                $(this).show();
+            }
+        });
     }
 
 };
