@@ -237,13 +237,17 @@ h2 {
     -webkit-transition: background 0.5s;
 }
 .cohero-activity-log-overlay{
-  postion:absolute;
+  position:absolute;
   width:100%;
   height:100%;
+  top:15vh;
+  padding:5vh 5vw;
+  z-index:10000;
   background: var(--cohero-background-blue);
+  display:none;
 }
 .cohero-activity-log-container {
-    font-size: 1.5vh;
+    font-size: 2.5vh;
     height: 85vh;
     font-family: "Open Sans", sans-serif;
 }

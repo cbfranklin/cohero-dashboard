@@ -51,13 +51,22 @@ var admin = {
         console.log('Generating random events');
         socket.on('kioskEvent', kioskEventHandler);
     },
-    reloadPage: function(){
+    reloadPage: function() {
         console.log('Reloading page...');
         window.location.reload();
     },
-    stopRandomData: function(){
+    stopRandomData: function() {
         console.log('Stopping random events...');
         socket.removeListener('kioskEvent');
+    },
+    toggleActivityLog: function() {
+        $('.cohero-activity-log-overlay:hidden').animateCSS('zoomIn');
+        $('.cohero-activity-log-overlay:visible').animateCSS('zoomOut', {
+            callback: function() {
+                $(this).hide();
+            }
+        });
+
     }
 
 };
@@ -99,10 +108,11 @@ function loadTemplates() {
     templates['cohero-notification-count'] = $('.template-cohero-notification-count').html();
 }
 
-function handleRemoteEvents(){
+function handleRemoteEvents() {
     socket.on('remoteEvent', remoteEventHandler);
 }
-function remoteEventHandler(msg){
+
+function remoteEventHandler(msg) {
     console.log('Remote Event Recieved', msg);
     var directive = msg.directive;
     admin[directive]();
@@ -214,16 +224,16 @@ function renderEventCounts() {
             gt1 = true;
         }
         var typeText;
-        if(type === "puffControl"){
+        if (type === "puffControl") {
             typeText = "Control Puff";
         }
-        if(type === "puffRescue"){
+        if (type === "puffRescue") {
             typeText = "Rescue Puff";
         }
-        if(type === "lungFunctionTest"){
+        if (type === "lungFunctionTest") {
             typeText = "Spirometry Test";
         }
-        if(count > 0){
+        if (count > 0) {
             var renderedHTML = Mustache.to_html(templates['cohero-notification-count'], {
                 count: count,
                 gt1: gt1,
@@ -260,6 +270,7 @@ function sendItemToActivityLog(item) {
 function cacheActivityLog() {
     localStorage.setItem('cohero-activity-log', JSON.stringify(activityLog));
 }
+
 function cacheEventCounts() {
     localStorage.setItem('cohero-event-counts', JSON.stringify(counts));
     console.log('event counts cached');
