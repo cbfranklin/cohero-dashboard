@@ -41,7 +41,7 @@ $(function() {
 });
 
 var admin = {
-    clearAllEvents: function() {
+    clearAllData: function() {
         localStorage['cohero-activity-log'] = '';
         localStorage['cohero-event-counts'] = '';
         console.log('Clearing cache and reloading page.');
