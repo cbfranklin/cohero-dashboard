@@ -201,6 +201,7 @@ function notifyLungFunctionTest(item) {
     item.eventDetails.pef = +((item.eventDetails.pef * 60).toFixed(0));
     item.eventDetails.fev1 = +((item.eventDetails.fev1).toFixed(2));
     item.eventDetails.fvc = +((item.eventDetails.fvc).toFixed(2));
+
     var renderedHTML = Mustache.to_html(templates['cohero-notification-lungFunctionTest'], {
         item: item,
         count: count
@@ -296,8 +297,5 @@ $.fn.marquisLungFunctionTest = function() {
     setTimeout(function() {
         $container.children().eq(2).animateCSS('fadeInUp');
     }, 6000);
-    /*setTimeout(function() {
-        $container.children().eq(2).animateCSS('fadeInUp');
-    }, 9000);*/
     return this;
 };

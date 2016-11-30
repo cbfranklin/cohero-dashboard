@@ -1,7 +1,14 @@
+:root{
+  --cohero-background-blue: #167ce2;
+  --cohero-accent-blue: #63a8ed;
+  --cohero-accent-red: red;
+  --cohero-accent-purple: purple;
+}
+
 body {
     font-family: "Museo-300", sans-serif;
     color: #fff;
-    background: #167ce2;
+    background: var(--cohero-background-blue);
 }
 
 h1, h2, h3, h4, h5, strong {
@@ -91,7 +98,7 @@ h2 {
     display: block;
     margin: 0 auto;
     fill: #fff;
-    stroke: #63a8ed;
+    stroke: var(--cohero-accent-blue);
     stroke-width: 4;
     stroke-miterlimit: 10;
     padding: 2.5vh 0;
@@ -105,11 +112,11 @@ h2 {
     display: block;
     margin: 0 auto;
     fill: transparent;
-    stroke: #63a8ed;
+    stroke: var(--cohero-accent-blue);
     stroke-width: 4;
     stroke-miterlimit: 10;
-    background: #167ce2;
-    background: radial-gradient(circle at center, transparent 28%, #167ce2 25.5%);
+    background: var(--cohero-background-blue);
+    background: radial-gradient(circle at center, transparent 28%, var(--cohero-background-blue) 25.5%);
     background-size: 220% 200%;
     background-position: 50% 50%;
     padding: 2.5vh 0;
@@ -143,7 +150,7 @@ h2 {
 .cohero-notification-item p {
     margin: 0;
     padding: 0;
-    color: #167ce2;
+    color: var(--cohero-background-blue);
     font-size: 2.0vw;
     font-family: "Open Sans", sans-serif;
 }
@@ -166,9 +173,23 @@ h2 {
     display: block;
 }
 
+.cohero-row-notification-control .cohero-notification-circle-fg,
+.cohero-row-notification-control .cohero-notification-circle-bg{
+  stroke: var(--cohero-accent-blue)
+}
+.cohero-row-notification-rescue .cohero-notification-circle-fg,
+.cohero-row-notification-rescue .cohero-notification-circle-bg{
+  stroke: var(--cohero-accent-red)
+}
+.cohero-row-notification-spirometer .cohero-notification-circle-fg,
+.cohero-row-notification-spirometer .cohero-notification-circle-bg{
+  stroke: var(--cohero-accent-purple)
+}
+
 .cohero-queue {
     color: #fff;
     overflow: hidden;
+    text-align: center;
 }
 
 .cohero-queue-header {
