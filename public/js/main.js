@@ -41,23 +41,25 @@ $(function() {
 });
 
 var admin = {
-    clearAllData: function() {
+    clearData: function() {
         localStorage['cohero-activity-log'] = '';
         localStorage['cohero-event-counts'] = '';
-        console.log('Clearing cache and reloading page.');
+        console.log('Clearing data cache and reloading page...');
         setTimeout(window.location.reload.bind(window.location), 1000);
     },
-    randomData: function() {
-        console.log('Generating random events');
-        socket.on('kioskEvent', kioskEventHandler);
+    toggleRandomData: function() {
+        if (socket._callbacks.$kioskEvent === undefined) {
+            socket.on('kioskEvent', kioskEventHandler);
+            console.log('Generating random events...');
+        }
+        else{
+            socket.removeListener('kioskEvent');
+            console.log('Stopping random events.');
+        }
     },
     reloadPage: function() {
         console.log('Reloading page...');
         window.location.reload();
-    },
-    stopRandomData: function() {
-        console.log('Stopping random events...');
-        socket.removeListener('kioskEvent');
     },
     toggleActivityLog: function() {
         $('.cohero-activity-log-overlay:hidden').animateCSS('zoomIn');
@@ -149,7 +151,7 @@ function addQueueItem(item) {
     $queue.append(renderedHTML);
 
     sendItemToActivityLog(item);
-    
+
     item.queued = true;
     data[type].push(item);
     counts[type] += 1;
@@ -227,13 +229,13 @@ function renderEventCounts() {
         }
         var typeText;
         if (type === "puffControl") {
-            typeText = "Control Puff";
+            typeText = "Control puff";
         }
         if (type === "puffRescue") {
-            typeText = "Rescue Puff";
+            typeText = "Rescue puff";
         }
         if (type === "lungFunctionTest") {
-            typeText = "Spirometry Test";
+            typeText = "Spirometry test";
         }
         if (count > 0) {
             var renderedHTML = Mustache.to_html(templates['cohero-notification-count'], {
