@@ -19,9 +19,6 @@ var inProgress = {
 
 var socket;
 
-
-
-
 $(function() {
 
     testForChrome();
@@ -43,7 +40,7 @@ function testForChrome() {
     }
 }
 
-function connectToSocket(){
+function connectToSocket() {
     socket = io();
     console.log('Connected to Socket.io');
 }
@@ -72,7 +69,7 @@ function loadTemplates() {
     templates['cohero-activity-log-item'] = $('.template-cohero-activity-log-item').html();
 }
 
-function randomData(){
+function randomData() {
 
     console.log('Using nodejs random event generator via socket.io');
 
@@ -128,8 +125,7 @@ function loadActivityLog() {
         console.log('Cached Activity Found. Loading...');
         activityLog = JSON.parse(localStorage['cohero-activity-log']);
         renderActivityLog(activityLog);
-    }
-    else{
+    } else {
         console.log('No Cached Activity Found');
     }
 }
@@ -167,7 +163,7 @@ function sendItemToActivityLog(item) {
     cacheActivityLog();
 }
 
-function cacheActivityLog(){
+function cacheActivityLog() {
     localStorage.setItem('cohero-activity-log', JSON.stringify(activityLog));
 }
 
@@ -257,30 +253,19 @@ $.fn.marquisPuffTaken = function() {
     });
     setTimeout(function() {
         $container.children().eq(1).animateCSS('fadeInDown', {
-            /*callback: function() {
+            callback: function() {
                 $(this).animateCSS('fadeOutUp', {
                     delay: 1000,
                     callback: function() {
-                        //$(this).hide();
+                        $(this).hide();
                     }
                 });
-            }*/
+            }
         });
     }, 3000);
-    /*setTimeout(function() {
-        $container.children().eq(0).animateCSS('fadeInUp'
-            , {
-                        callback: function() {
-                            $(this).animateCSS('fadeOut', {
-                                delay: 1000,
-                                callback: function() {
-                                    $(this).hide();
-                                }
-                            });
-                        }
-                    }
-        );
-    }, 6000);*/
+    setTimeout(function() {
+        $container.children().eq(2).animateCSS('fadeInUp');
+    }, 6000);
     return this;
 };
 
@@ -309,32 +294,10 @@ $.fn.marquisLungFunctionTest = function() {
         });
     }, 3000);
     setTimeout(function() {
-        $container.children().eq(2).animateCSS('fadeInUp'
-            /*, {
-                        callback: function() {
-                            $(this).animateCSS('fadeOut', {
-                                delay: 1000,
-                                callback: function() {
-                                    $(this).hide();
-                                }
-                            });
-                        }
-                    }*/
-        );
+        $container.children().eq(2).animateCSS('fadeInUp');
     }, 6000);
-    setTimeout(function() {
-        $container.children().eq(2).animateCSS('fadeInUp'
-            /*, {
-                        callback: function() {
-                            $(this).animateCSS('fadeOutUp', {
-                                delay: 1000,
-                                callback: function() {
-                                    $(this).hide();
-                                }
-                            });
-                        }
-                    }*/
-        );
-    }, 9000);
+    /*setTimeout(function() {
+        $container.children().eq(2).animateCSS('fadeInUp');
+    }, 9000);*/
     return this;
 };

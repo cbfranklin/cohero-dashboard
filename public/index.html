@@ -122,6 +122,9 @@
                 <img src="assets/HeroTracker.svg" />
             </div>
             <div class="cohero-notification-item">
+                <p>{{item.eventDetails.syncToDeviceTimeLocal}} {{item.eventDetails.medication}} {{item.eventDetails.medicationType}}</p>
+            </div>
+            <div class="cohero-notification-item">
                 <p>
                     <span class="count">{{count}}</span> Puff{{#gt1}}s{{/gt1}} synced
                 </p>
