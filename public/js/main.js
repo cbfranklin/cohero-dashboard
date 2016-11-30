@@ -1,19 +1,22 @@
 var templates = {};
 
 var counts = {
-    "puffTaken": 0,
+    "puffControl": 0,
+    "puffRescue": 0,
     "lungFunctionTest": 0
 };
 
 var activityLog = [];
 
 var data = {
-    "puffTaken": [],
+    "puffControl": [],
+    "puffRescue": [],
     "lungFunctionTest": []
 };
 
 var inProgress = {
-    "puffTaken": false,
+    "puffControl": false,
+    "puffRescue": false,
     "lungFunctionTest": false
 };
 
@@ -27,11 +30,26 @@ $(function() {
 
     loadActivityLog();
 
+    loadEventCounts();
+
     connectToSocket();
 
     connectToCoheroHub();
 
 });
+
+var admin = {
+    clearAllEvents: function() {
+        localStorage['cohero-activity-log'] = '';
+        console.log('Clearing cache and reloading page.');
+        setTimeout(window.location.reload.bind(window.location), 1000);
+    },
+    randomData: function() {
+        console.log('Using nodejs random event generator via socket.io');
+        socket.on('kioskEvent', kioskEventHandler);
+    }
+
+};
 
 function testForChrome() {
     var chrome = /chrom(e|ium)/.test(navigator.userAgent.toLowerCase());
@@ -67,14 +85,7 @@ function loadTemplates() {
     templates['cohero-notification-puffTaken'] = $('.template-cohero-notification-puffTaken').html();
     templates['cohero-notification-lungFunctionTest'] = $('.template-cohero-notification-lungFunctionTest').html();
     templates['cohero-activity-log-item'] = $('.template-cohero-activity-log-item').html();
-}
-
-function randomData() {
-
-    console.log('Using nodejs random event generator via socket.io');
-
-    socket.on('kioskEvent', kioskEventHandler);
-
+    templates['cohero-notification-count'] = $('.template-cohero-notification-count').html();
 }
 
 function kioskEventHandler(msg) {
@@ -83,8 +94,26 @@ function kioskEventHandler(msg) {
     addQueueItem(msg);
 }
 
+function determineEventType(item) {
+    var type;
+    if (item.eventType === "puffTaken") {
+        var medicationType = item.eventDetails.medicationType;
+        if (medicationType === "Control") {
+            type = "puffControl";
+        }
+        if (medicationType === "Rescue") {
+            type = "puffRescue";
+        }
+    }
+    if (item.eventType === "lungFunctionTest") {
+        type = "lungFunctionTest";
+    }
+    return type;
+}
+
 function addQueueItem(item) {
-    var type = item.eventType;
+    var type = determineEventType(item);
+
     var renderedHTML = Mustache.to_html(templates['cohero-queue-item'], item);
     var $queue = $('.cohero-queue-' + type);
     $queue.append(renderedHTML);
@@ -92,10 +121,12 @@ function addQueueItem(item) {
     item.queued = true;
     data[type].push(item);
     counts[type] += 1;
+    cacheEventCounts();
+
 
     setTimeout(checkForQueuedItems, 1000, type);
 
-    console.log('Event Queued', item.eventId);
+    console.log('Event Queued', type, item.eventId);
 }
 
 function removeQueueItem(id) {
@@ -110,10 +141,10 @@ function removeQueueItem(id) {
 }
 
 function notifyQueuedItem(item) {
-    var type = item.eventType;
+    var type = determineEventType(item);
 
-    if (type === 'puffTaken') {
-        notifyPuffTaken(item);
+    if (type === 'puffControl' || type === 'puffRescue') {
+        notifyPuffTaken(item, type);
     }
     if (type === 'lungFunctionTest') {
         notifyLungFunctionTest(item);
@@ -126,7 +157,17 @@ function loadActivityLog() {
         activityLog = JSON.parse(localStorage['cohero-activity-log']);
         renderActivityLog(activityLog);
     } else {
-        console.log('No Cached Activity Found');
+        console.log('No Cached Activity Found!');
+    }
+}
+
+function loadEventCounts() {
+    if (localStorage['cohero-event-counts']) {
+        console.log('Cached Event Counts Found. Loading...');
+        counts = JSON.parse(localStorage['cohero-event-counts']);
+        renderEventCounts();
+    } else {
+        console.log('No Cached Event Counts Found!');
     }
 }
 
@@ -141,11 +182,33 @@ function renderActivityLog(log) {
     $('.cohero-activity-log tbody').append(renderedHTML);
 }
 
+function renderEventCounts() {
+    Object.keys(counts).forEach(function(key) {
+        renderEventCount(key);
+    });
+
+    function renderEventCount(type) {
+        var count = counts[type];
+        var gt1 = false;
+        if (count > 1) {
+            gt1 = true;
+        }
+        if(count > 0){
+            var renderedHTML = Mustache.to_html(templates['cohero-notification-count'], {
+                count: count,
+                gt1: gt1
+            });
+            var $notification = $('.cohero-notification-container-' + type);
+            $notification.html(renderedHTML);
+        }
+    }
+}
+
 function sendItemToActivityLog(item) {
     console.log('Event Sent to Activity Log', item.eventId);
 
     if (item.eventType === "puffTaken") {
-        item.eventLogDescripton = "eMDI Puff";
+        item.eventLogDescripton = "eMDI Puff" + " " + item.eventDetails.medicationType;
     }
     if (item.eventType === "lungFunctionTest") {
         item.eventLogDescripton = "Spirometry";
@@ -166,12 +229,16 @@ function sendItemToActivityLog(item) {
 function cacheActivityLog() {
     localStorage.setItem('cohero-activity-log', JSON.stringify(activityLog));
 }
+function cacheEventCounts() {
+    localStorage.setItem('cohero-event-counts', JSON.stringify(counts));
+    console.log('event counts cached');
+}
 
-function notifyPuffTaken(item) {
-    inProgress.puffTaken = true;
+function notifyPuffTaken(item, type) {
+    inProgress[type] = true;
     //remove MCG units to save space
     item.eventDetails.medication = item.eventDetails.medication.replace(/ mcg/, '');
-    var count = counts.puffTaken;
+    var count = counts[type];
     var gt1 = false;
     if (count > 1) {
         gt1 = true;
@@ -181,12 +248,12 @@ function notifyPuffTaken(item) {
         count: count,
         gt1: gt1
     });
-    var $notification = $('.cohero-notification-container-puffTaken');
+    var $notification = $('.cohero-notification-container-' + type);
     $notification.html(renderedHTML).marquisPuffTaken();
 
     setTimeout(function() {
-        inProgress.puffTaken = false;
-        checkForQueuedItems('puffTaken');
+        inProgress[type] = false;
+        checkForQueuedItems(type);
     }, 6000);
 }
 

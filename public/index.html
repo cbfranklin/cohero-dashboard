@@ -52,7 +52,7 @@
                         <svg class="cohero-notification-circle-bg" viewbox="0 0 200 200">
                             <circle class="path" cx="100" cy="100" r="95" />
                         </svg>
-                        <div class="cohero-notification-container cohero-notification-container-puffTaken">
+                        <div class="cohero-notification-container cohero-notification-container-puffControl">
                         </div>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                             eMDI Control Queue
                         </div>
                     </div>
-                    <div class="cohero-queue-container cohero-queue-puffTaken">
+                    <div class="cohero-queue-container cohero-queue-puffControl">
                     </div>
                 </div>
             </div>
@@ -76,7 +76,7 @@
                         <svg class="cohero-notification-circle-bg" viewbox="0 0 200 200">
                             <circle class="path" cx="100" cy="100" r="95" />
                         </svg>
-                        <div class="cohero-notification-container cohero-notification-container-puffTaken">
+                        <div class="cohero-notification-container cohero-notification-container-puffRescue">
                         </div>
                     </div>
                 </div>
@@ -86,7 +86,7 @@
                             eMDI Rescue Queue
                         </div>
                     </div>
-                    <div class="cohero-queue-container cohero-queue-puffTaken">
+                    <div class="cohero-queue-container cohero-queue-puffRescue">
                     </div>
                 </div>
             </div>
@@ -113,33 +113,39 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-xs-4">
-                <div class="col-xs-12">
-                    <h2 class="cohero-actvity-log-header">Activity Log</h2>
-                </div>
-                <div class="col-xs-12 cohero-activity-log-container">
-                    <table class="cohero-activity-log table">
-                        <thead>
-                            <th>
-                                Time
-                            </th>
-                            <th>
-                                Kiosk
-                            </th>
-                            <th colspan="4">
-                                Description
-                            </th>
-                        </thead>
-                        <tbody>
+        </div>
+        <div class="container cohero-activity-log-overlay">
+            <div class="col-xs-12">
+                <h2 class="cohero-actvity-log-header">Activity Log</h2>
+            </div>
+            <div class="col-xs-12 cohero-activity-log-container">
+                <table class="cohero-activity-log table">
+                    <thead>
+                        <th>
+                            Time
+                        </th>
+                        <th>
+                            Kiosk
+                        </th>
+                        <th colspan="4">
+                            Description
+                        </th>
+                    </thead>
+                    <tbody>
 
-                        </tbody>
-                    </table>
-                </div>
-
-            </div> -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <div id="templates" style="display:none">
+        <div class="template-cohero-notification-count">
+            <div class="cohero-notification-item">
+                <p>
+                    <span class="count">{{count}}</span> Puff{{#gt1}}s{{/gt1}} synced
+                </p>
+            </div>
+        </div>
         <div class="template-cohero-notification-puffTaken">
             <div class="cohero-notification-item">
                 <img src="assets/HeroTracker.svg" />

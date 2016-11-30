@@ -15,14 +15,14 @@ randomEventLoop();
 
 function randomEvent() {
 
-    var eventType = Math.floor((Math.random() * 2) + 1);
+    var eventType = Math.floor((Math.random() * 3) + 1);
 
     var randomId = Math.floor((Math.random() * 200));
 
     var event;
 
     //puffTaken
-    if (eventType === 1) {
+    if (eventType <= 2) {
         event = eventTemplates.puffTaken;
 
         event.eventId = 'P-100' + randomId;
@@ -32,15 +32,15 @@ function randomEvent() {
         if (medicationType === 1) {
             event.eventDetails.medicationType = "Control";
         }
-        if(medicationType === 2){
-          event.eventDetails.medicationType = "Rescue";
+        if (medicationType === 2) {
+            event.eventDetails.medicationType = "Rescue";
         }
     }
 
     //lungFunctionTest
-    if (eventType === 2) {
+    if (eventType === 3) {
         event = eventTemplates.lungFunctionTest;
-        var randomPef = Math.floor((Math.random() * 200) + 400)/6000;
+        var randomPef = Math.floor((Math.random() * 200) + 400) / 6000;
         event.eventDetails.pef = randomPef;
         event.eventId = 'LF-100' + randomId;
     }

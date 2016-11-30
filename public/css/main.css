@@ -189,7 +189,6 @@ h2 {
 .cohero-queue {
     color: #fff;
     overflow: hidden;
-    text-align: center;
 }
 
 .cohero-queue-header {
@@ -200,6 +199,7 @@ h2 {
     overflow: hidden;
     font-size: 3.5vh;
     font-family: 'museo_sans_rounded-300', sans-serif;
+    text-align: center;
 }
 
 .cohero-actvity-log-header {
@@ -236,7 +236,12 @@ h2 {
     background: #51b19c;
     -webkit-transition: background 0.5s;
 }
-
+.cohero-activity-log-overlay{
+  postion:absolute;
+  width:100%;
+  height:100%;
+  background: var(--cohero-background-blue);
+}
 .cohero-activity-log-container {
     font-size: 1.5vh;
     height: 85vh;
