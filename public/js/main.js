@@ -51,8 +51,7 @@ var admin = {
         if (socket._callbacks.$kioskEvent === undefined) {
             socket.on('kioskEvent', kioskEventHandler);
             console.log('Generating random events...');
-        }
-        else{
+        } else {
             socket.removeListener('kioskEvent');
             console.log('Stopping random events.');
         }
@@ -126,7 +125,17 @@ function remoteEventHandler(msg) {
 function kioskEventHandler(msg) {
     console.log('Event Recieved', msg.eventId);
     console.table(msg);
-    addQueueItem(msg);
+
+    var item = msg;
+
+    if (item.eventType === "lungFunctionTest") {
+        //let's round!
+        item.eventDetails.pef = +((item.eventDetails.pef * 60).toFixed(0));
+        item.eventDetails.fev1 = +((item.eventDetails.fev1).toFixed(2));
+        item.eventDetails.fvc = +((item.eventDetails.fvc).toFixed(2));
+    }
+
+    addQueueItem(item);
 }
 
 function determineEventType(item) {
@@ -262,6 +271,8 @@ function sendItemToActivityLog(item) {
         item.eventLogDescripton = "Spirometry";
     }
 
+
+
     var renderedHTML = Mustache.to_html(templates['cohero-activity-log-item'], {
         item: item
     });
@@ -314,13 +325,14 @@ function notifyLungFunctionTest(item) {
         gt1 = true;
     }
     //let's round!
-    item.eventDetails.pef = +((item.eventDetails.pef * 60).toFixed(0));
-    item.eventDetails.fev1 = +((item.eventDetails.fev1).toFixed(2));
-    item.eventDetails.fvc = +((item.eventDetails.fvc).toFixed(2));
+    // item.eventDetails.pef = +((item.eventDetails.pef * 60).toFixed(0));
+    // item.eventDetails.fev1 = +((item.eventDetails.fev1).toFixed(2));
+    // item.eventDetails.fvc = +((item.eventDetails.fvc).toFixed(2));
 
     var renderedHTML = Mustache.to_html(templates['cohero-notification-lungFunctionTest'], {
         item: item,
-        count: count
+        count: count,
+        gt1: gt1
     });
     var $notification = $('.cohero-notification-container-lungFunctionTest');
     $notification.html(renderedHTML).marquisLungFunctionTest();
