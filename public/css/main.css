@@ -122,8 +122,8 @@ h2 {
     stroke-width: 4;
     stroke-miterlimit: 10;
     background: var(--cohero-background-blue);
-    background: radial-gradient(circle at center, transparent 27%, var(--cohero-background-blue) 25.5%);
-    background-size: 215% 200%;
+    background: radial-gradient(circle at center, transparent 21vh, var(--cohero-background-blue) 0);
+    background-size: 100% 100%;
     background-position: 50% 50%;
     padding: 2.5vh 0;
     box-sizing: content-box;

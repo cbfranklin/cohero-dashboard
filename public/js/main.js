@@ -324,7 +324,8 @@ function notifyLungFunctionTest(item) {
     if (count > 1) {
         gt1 = true;
     }
-    //let's round!
+    
+    //let's round! -- moved earlier in the pipeline, since rounding is used everywhere
     // item.eventDetails.pef = +((item.eventDetails.pef * 60).toFixed(0));
     // item.eventDetails.fev1 = +((item.eventDetails.fev1).toFixed(2));
     // item.eventDetails.fvc = +((item.eventDetails.fvc).toFixed(2));
