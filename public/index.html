@@ -19,27 +19,12 @@
             <h1><center>I am designed for use in portrait orientation only.</center></h1>
         </div>
     </div>
-    <!-- <div class="row-fluid">
-        <nav class="navbar navbar-default cohero-navbar">
-            <div class="container-fluid">
-                <div class="navbar-header cohero-header">
-                    <div class="cohero-logo">
-                        <img src="assets/Cohero%20Logo_Horizontal_White.svg" />
-                    </div>
-                    <div class="cohero-emdi-logo">
-                        <img src="assets/eMDI%20LOGO.svg" />
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div> -->
     <div class="row-fluid cohero-new-header">
         <div class="cohero-logo">
             <img src="assets/Cohero%20Logo_Horizontal_White.svg" />
         </div>
         <div class="cohero-emdi-logo">
             <img src="assets/emdi-logo-no-shadow.svg" />
-            <!-- <img src="assets/eMDI%20LOGO.svg" /> -->
         </div>
     </div>
     <div class="container-fluid">
@@ -156,7 +141,7 @@
                 <img src="assets/HeroTracker.svg" />
             </div>
             <div class="cohero-notification-item">
-                <p>{{item.eventDetails.syncToDeviceTimeLocal}} {{item.eventDetails.medication}} {{item.eventDetails.medicationType}}</p>
+                <p>{{item.eventDetails.syncToDeviceTimeLocal}}&nbsp;{{item.eventDetails.medication}}&nbsp;{{item.eventDetails.medicationType}}</p>
             </div>
             <div class="cohero-notification-item">
                 <p>
@@ -180,7 +165,7 @@
         <script type="template" class="template-cohero-activity-log-item">
             {{#item}}
             <tr class="animated fadeIn">
-                <td>{{eventDetails.eventTimeLocal}}</td>
+                <td>{{eventDetails.syncToDeviceTimeLocal}}</td>
                 <td>{{title}}</td>
                 <td>{{eventLogDescripton}}</td>
                 <td>{{#eventDetails.pef}}{{eventDetails.pef}} PEF{{/eventDetails.pef}}{{#eventDetails.medication}}{{eventDetails.medication}}{{/eventDetails.medication}}</td>
@@ -200,7 +185,6 @@
             </div>
         </div>
     </div>
-    <!--<script src="bower_components/jquery/dist/jquery.min.js"></script>-->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="http://35.163.78.124:11111/Scripts/jquery.signalR-1.1.4.min.js"></script>
     <script type="text/javascript" src="http://35.163.78.124:11111/signalr/hubs"></script>

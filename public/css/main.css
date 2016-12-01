@@ -175,21 +175,37 @@ h2 {
     font-family: "museo_sans_rounded-500", sans-serif;
 }
 
+.cohero-queue-item-active {
+    background: #51b19c;
+    -webkit-transition: background 0.5s;
+}
+
 .cohero-notification-item .spirometer-kiosk {
     color: var(--cohero-accent-green);
     display: block;
 }
+.cohero-queue-puffControl .cohero-queue-item-active{
+    background: var(--cohero-accent-purple)
+}
+.cohero-row-notification-control .cohero-notification-circle-fg,
+.cohero-row-notification-control .cohero-notification-circle-bg {
+    stroke: var(--cohero-accent-purple);
+}
 
-.cohero-row-notification-control .cohero-notification-circle-fg, .cohero-row-notification-control .cohero-notification-circle-bg {
+.cohero-queue-puffRescue .cohero-queue-item-active{
+    background:var(--cohero-accent-blue);
+}
+.cohero-row-notification-rescue .cohero-notification-circle-fg,
+.cohero-row-notification-rescue .cohero-notification-circle-bg {
     stroke: var(--cohero-accent-blue)
 }
 
-.cohero-row-notification-rescue .cohero-notification-circle-fg, .cohero-row-notification-rescue .cohero-notification-circle-bg {
-    stroke: var(--cohero-accent-red)
+.cohero-queue-lungFunctionTest .cohero-queue-item-active{
+    background: var(--cohero-accent-green);
 }
-
-.cohero-row-notification-spirometer .cohero-notification-circle-fg, .cohero-row-notification-spirometer .cohero-notification-circle-bg {
-    stroke: var(--cohero-accent-purple)
+.cohero-row-notification-spirometer .cohero-notification-circle-fg,
+.cohero-row-notification-spirometer .cohero-notification-circle-bg {
+    stroke: var(--cohero-accent-green)
 }
 
 .cohero-queue {
@@ -236,11 +252,6 @@ h2 {
 
 .cohero-queue-item-kiosk {
     background: rgba(255, 255, 255, 0.3);
-}
-
-.cohero-queue-item-active {
-    background: #51b19c;
-    -webkit-transition: background 0.5s;
 }
 
 .cohero-activity-log-overlay {

@@ -13,12 +13,12 @@ http.listen(3000, function() {
     console.log('listening on *:3000');
 });
 
-io.on('connection', function (socket) {
+io.on('connection', function(socket) {
     socket.on('remoteEvent', function(data) {
         console.log('REMOTE EVENT!');
         socket.broadcast.emit('remoteEvent', data);
     });
-  });
+});
 
 
 
@@ -60,6 +60,7 @@ function randomEvent() {
     var now = moment().format('HH:mm:ss');
     event.localTimestamp = now;
     event.eventDetails.eventTimeLocal = now;
+    event.eventDetails.syncToDeviceTimeLocal = now;
 
     var whiskys = ['Glenlivet', 'Dewars', 'Jameson', 'Laphroaig'];
     var kioskName = whiskys[Math.floor(Math.random() * whiskys.length)];
