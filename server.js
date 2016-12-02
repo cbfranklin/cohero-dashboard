@@ -52,7 +52,7 @@ function randomEvent() {
     //lungFunctionTest
     if (eventType === 3) {
         event = eventTemplates.lungFunctionTest;
-        var randomPef = Math.floor((Math.random() * 200) + 400) / 6000;
+        var randomPef = Math.floor((Math.random() * 200) + 400) / 60;
         event.eventDetails.pef = randomPef;
         event.eventId = 'LF-100' + randomId;
     }
@@ -63,7 +63,8 @@ function randomEvent() {
     event.eventDetails.syncToDeviceTimeLocal = now;
 
     var whiskys = ['Glenlivet', 'Dewars', 'Jameson', 'Laphroaig'];
-    var kioskName = whiskys[Math.floor(Math.random() * whiskys.length)];
+    var randomWhisky = Math.floor(Math.random() * whiskys.length);
+    var kioskName = whiskys[randomWhisky];
     event.title = kioskName;
 
     console.log('\nEvent Emitted\n');

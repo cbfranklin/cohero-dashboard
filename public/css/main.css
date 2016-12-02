@@ -1,12 +1,13 @@
 :root {
     --cohero-background-blue: #167ce2;
     --cohero-accent-blue: #63a8ed;
-    --cohero-accent-purple: #a670c4;
-    --cohero-accent-green: #51b19c;
+    --cohero-accent-purple: #C99fe2;
+    --cohero-accent-green: #52d9cc;
+    --cohero-gabriel-blue: #007aaf;
 }
 
-.test{
-    display:none;
+.test {
+    display: none;
 }
 
 body {
@@ -136,7 +137,7 @@ h2 {
     position: absolute;
     z-index: 100;
     display: table;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 .cohero-notification-item {
@@ -157,7 +158,7 @@ h2 {
     margin: 0;
     padding: 0;
     color: var(--cohero-background-blue);
-    font-size: 2.0vw;
+    font-size: 1.9vw;
     font-family: "Open Sans", sans-serif;
 }
 
@@ -169,41 +170,61 @@ h2 {
 }
 
 .cohero-notification-item .spirometer-reading {
-    font-size: 1.6em;
+    font-size: 1.2em;
     display: block;
+    line-height:1.1em;
+}
+.cohero-notification-item .spirometer-number{
     font-family: "museo_sans_rounded-500", sans-serif;
+    font-size:1.4em;
 }
 
-.cohero-queue-item-active {
-    background: #51b19c;
-    -webkit-transition: background 0.5s;
+.cohero-notification-item p .medication {
+    font-size: 1.2em;
+}
+
+.cohero-notification-item p .meta {
+    font-size: 0.7em;
+    line-height: 1.2em;
+    display: block;
+}
+
+.cohero-notification-container-puffControl .cohero-notification-item p .medication {
+    color: var(--cohero-accent-purple);
+}
+
+.cohero-notification-container-puffRescue .cohero-notification-item p .medication {
+    color: var(--cohero-accent-blue);
 }
 
 .cohero-notification-item .spirometer-kiosk {
-    color: var(--cohero-accent-green);
+    /*color: var(--cohero-accent-green);*/
     display: block;
+    padding-top:0.7em;
+    font-size:0.7em;
 }
-.cohero-queue-puffControl .cohero-queue-item-active{
+
+.cohero-queue-puffControl .cohero-queue-item-active {
     background: var(--cohero-accent-purple)
 }
-.cohero-row-notification-control .cohero-notification-circle-fg,
-.cohero-row-notification-control .cohero-notification-circle-bg {
+
+.cohero-row-notification-control .cohero-notification-circle-fg, .cohero-row-notification-control .cohero-notification-circle-bg {
     stroke: var(--cohero-accent-purple);
 }
 
-.cohero-queue-puffRescue .cohero-queue-item-active{
-    background:var(--cohero-accent-blue);
+.cohero-queue-puffRescue .cohero-queue-item-active {
+    background: var(--cohero-accent-blue);
 }
-.cohero-row-notification-rescue .cohero-notification-circle-fg,
-.cohero-row-notification-rescue .cohero-notification-circle-bg {
+
+.cohero-row-notification-rescue .cohero-notification-circle-fg, .cohero-row-notification-rescue .cohero-notification-circle-bg {
     stroke: var(--cohero-accent-blue)
 }
 
-.cohero-queue-lungFunctionTest .cohero-queue-item-active{
+.cohero-queue-lungFunctionTest .cohero-queue-item-active {
     background: var(--cohero-accent-green);
 }
-.cohero-row-notification-spirometer .cohero-notification-circle-fg,
-.cohero-row-notification-spirometer .cohero-notification-circle-bg {
+
+.cohero-row-notification-spirometer .cohero-notification-circle-fg, .cohero-row-notification-spirometer .cohero-notification-circle-bg {
     stroke: var(--cohero-accent-green)
 }
 
@@ -235,6 +256,11 @@ h2 {
     font-size: 3vh;
 }
 
+.cohero-queue-item-active {
+    background: #51b19c;
+    -webkit-transition: background 0.5s;
+}
+
 .cohero-queue-item {
     /*border-bottom: 1px solid rgba(0, 0, 0, 0.3);*/
     overflow: hidden;
@@ -242,7 +268,7 @@ h2 {
 
 .cohero-queue-item-time, .cohero-queue-item-kiosk {
     height: 100%;
-    padding: 0.3em 0.5em;
+    padding: 0.3em 0.8em;
 }
 
 .cohero-queue-item-time {

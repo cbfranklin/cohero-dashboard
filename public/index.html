@@ -139,7 +139,14 @@
                 <img src="assets/HeroTracker.svg" />
             </div>
             <div class="cohero-notification-item">
-                <p>{{item.eventDetails.syncToDeviceTimeLocal}}<br />{{item.eventDetails.medication}}<br />{{item.eventDetails.medicationType}}</p>
+                <p><span class="medication">{{item.eventDetails.medication}}</span>
+                    <span class="meta">
+                    {{item.eventDetails.medicationType}}
+                    <br />{{item.title}} kiosk
+                    <br />{{item.eventDetails.syncToDeviceTimeLocal}}
+                    </span>
+                </p>
+
             </div>
             <div class="cohero-notification-item">
                 <p>
@@ -152,7 +159,11 @@
                 <img src="assets/Spirometer.svg" />
             </div>
             <div class="cohero-notification-item">
-                <p><span class="spirometer-reading">{{item.eventDetails.pef}} L/m flow</span> <span class="spirometer-kiosk">{{item.title}} kiosk</span></p>
+                <p><span class="spirometer-reading">
+                    <span class="spirometer-number">{{item.eventDetails.pef}}</span> L/m
+                    <br /> peak flow</span>
+                    <span class="spirometer-kiosk">{{item.title}} kiosk
+                        <br />{{item.eventDetails.syncToDeviceTimeLocal}}</span></p>
             </div>
             <div class="cohero-notification-item animated fadeInUp">
                 <p>
@@ -174,10 +185,10 @@
         </script>
         <div class="template-cohero-queue-item">
             <div class="cohero-queue-item animated fadeInUp" data-id="{{eventId}}">
-                <div class="cohero-queue-item-time col-xs-3">
+                <div class="cohero-queue-item-time col-xs-4">
                     {{eventDetails.syncToDeviceTimeLocal}}
                 </div>
-                <div class="cohero-queue-item-kiosk col-xs-9">
+                <div class="cohero-queue-item-kiosk col-xs-8">
                     {{title}} kiosk
                 </div>
             </div>

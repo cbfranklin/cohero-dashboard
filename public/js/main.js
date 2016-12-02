@@ -20,6 +20,10 @@ var inProgress = {
     "lungFunctionTest": false
 };
 
+//t = Time Unit, in milliseconds
+//is the value on which all timings in this app are based
+var t = 1000;
+
 var socket;
 
 $(function() {
@@ -88,20 +92,28 @@ function connectToSocket() {
 }
 
 function connectToCoheroHub() {
+    var coheroHub;
+    var isConnected;
+    try {
+        coheroHub = $.hubConnection('http://35.163.78.124:11111/signalr/hubs');
+        isConnected = true;
+    } catch (err) {
+        console.log('Cannot connect to Cohero Hub!');
+        isConnected = false;
+    }
+    if (isConnected === true) {
+        var proxy = coheroHub.createHubProxy('signalRHub');
+        proxy.on('recieveMessage', kioskEventHandler);
 
-    /* using cohero servers */
-    var coheroHub = $.hubConnection('http://35.163.78.124:11111/signalr/hubs');
+        coheroHub.start().done(function() {
+                console.log('Connected to Cohero Hub');
+                // console.log('Hub Connection ID =', coheroHub.id);
+            })
+            .fail(function() {
+                console.log('Could not connect to Cohero Hub!');
+            });
+    }
 
-    var proxy = coheroHub.createHubProxy('signalRHub');
-    proxy.on('recieveMessage', kioskEventHandler);
-
-    coheroHub.start().done(function() {
-            console.log('Connected to Cohero Hub');
-            console.log('Connection ID=' + coheroHub.id);
-        })
-        .fail(function() {
-            console.log('Could not connect');
-        });
 }
 
 function loadTemplates() {
@@ -170,7 +182,7 @@ function addQueueItem(item) {
     cacheEventCounts();
 
 
-    setTimeout(checkForQueuedItems, 1000, type);
+    setTimeout(checkForQueuedItems, t * 1, type);
 
     console.log('Event Queued', type, item.eventId);
 }
@@ -182,8 +194,8 @@ function removeQueueItem(id) {
         $item.slideUp();
         setTimeout(function() {
             $item.remove();
-        }, 1000);
-    }, 5000);
+        }, t * 1);
+    }, t * 6);
 }
 
 function notifyQueuedItem(item) {
@@ -314,7 +326,7 @@ function notifyPuffTaken(item, type) {
     setTimeout(function() {
         inProgress[type] = false;
         checkForQueuedItems(type);
-    }, 6000);
+    }, t * 7);
 }
 
 function notifyLungFunctionTest(item) {
@@ -341,7 +353,7 @@ function notifyLungFunctionTest(item) {
     setTimeout(function() {
         inProgress.lungFunctionTest = false;
         checkForQueuedItems('lungFunctionTest');
-    }, 9000);
+    }, t * 9);
 }
 
 function checkForQueuedItems(type) {
@@ -364,7 +376,7 @@ function checkForQueuedItems(type) {
         }
 
         if (found) {
-            setTimeout(checkForQueuedItems, 3000, type);
+            setTimeout(checkForQueuedItems, t * 3, type);
         }
     }
 }
@@ -374,9 +386,10 @@ function checkForQueuedItems(type) {
 $.fn.marquisPuffTaken = function() {
     var $container = $(this);
     $container.children().hide().eq(0).animateCSS('fadeInWobble', {
+        duration: t * 2,
         callback: function() {
             $(this).animateCSS('fadeOutDown', {
-                delay: 1000,
+                //delay: t * 1,
                 callback: function() {
                     $(this).hide();
                 }
@@ -387,26 +400,27 @@ $.fn.marquisPuffTaken = function() {
         $container.children().eq(1).animateCSS('fadeInDown', {
             callback: function() {
                 $(this).animateCSS('fadeOutUp', {
-                    delay: 1000,
+                    delay: t * 2,
                     callback: function() {
                         $(this).hide();
                     }
                 });
             }
         });
-    }, 3000);
+    }, t * 3);
     setTimeout(function() {
         $container.children().eq(2).animateCSS('fadeInUp');
-    }, 6000);
+    }, t * 7);
     return this;
 };
 
 $.fn.marquisLungFunctionTest = function() {
     var $container = $(this);
     $container.children().hide().eq(0).animateCSS('fadeInWobble', {
+        duration: t * 2,
         callback: function() {
             $(this).animateCSS('fadeOutDown', {
-                delay: 1000,
+                //delay: t * 1,
                 callback: function() {
                     $(this).hide();
                 }
@@ -417,16 +431,16 @@ $.fn.marquisLungFunctionTest = function() {
         $container.children().eq(1).animateCSS('fadeInDown', {
             callback: function() {
                 $(this).animateCSS('fadeOutUp', {
-                    delay: 1000,
+                    delay: t * 2,
                     callback: function() {
                         $(this).hide();
                     }
                 });
             }
         });
-    }, 3000);
+    }, t * 3);
     setTimeout(function() {
         $container.children().eq(2).animateCSS('fadeInUp');
-    }, 6000);
+    }, t * 7);
     return this;
 };
