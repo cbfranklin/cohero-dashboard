@@ -160,10 +160,15 @@ function determineEventType(item) {
         if (medicationType === "Rescue") {
             type = "puffRescue";
         }
+        //Rescue and Emergency are one in the same
+        if(medicationType === "Emergency"){
+            type = "puffRescue";
+        }
     }
     if (item.eventType === "lungFunctionTest") {
         type = "lungFunctionTest";
     }
+
     return type;
 }
 
@@ -177,7 +182,13 @@ function addQueueItem(item) {
     sendItemToActivityLog(item);
 
     item.queued = true;
-    data[type].push(item);
+    if (data[type]) {
+        data[type].push(item);
+    }
+    else{
+        console.log(item);
+    }
+
     counts[type] += 1;
     cacheEventCounts();
 
