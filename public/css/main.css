@@ -208,7 +208,8 @@ h2 {
     background: var(--cohero-accent-purple)
 }
 
-.cohero-row-notification-control .cohero-notification-circle-fg, .cohero-row-notification-control .cohero-notification-circle-bg {
+.cohero-row-notification-control .cohero-notification-circle-fg,
+.cohero-row-notification-control .cohero-notification-circle-bg {
     stroke: var(--cohero-accent-purple);
 }
 
@@ -216,7 +217,8 @@ h2 {
     background: var(--cohero-accent-blue);
 }
 
-.cohero-row-notification-rescue .cohero-notification-circle-fg, .cohero-row-notification-rescue .cohero-notification-circle-bg {
+.cohero-row-notification-rescue .cohero-notification-circle-fg,
+.cohero-row-notification-rescue .cohero-notification-circle-bg {
     stroke: var(--cohero-accent-blue)
 }
 
@@ -224,7 +226,8 @@ h2 {
     background: var(--cohero-accent-green);
 }
 
-.cohero-row-notification-spirometer .cohero-notification-circle-fg, .cohero-row-notification-spirometer .cohero-notification-circle-bg {
+.cohero-row-notification-spirometer .cohero-notification-circle-fg,
+.cohero-row-notification-spirometer .cohero-notification-circle-bg {
     stroke: var(--cohero-accent-green)
 }
 

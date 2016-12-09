@@ -1,1 +1,1 @@
-# Cohero Demo
+# Cohero Dashboard
