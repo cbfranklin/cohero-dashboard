@@ -13,17 +13,64 @@ http.listen(3000, function() {
     console.log('listening on *:3000');
 });
 
+var clients = {
+    screen: 0,
+    remote: 0
+};
+
+function isRemote(str) {
+    return /\/remote/.test(str);
+}
+
 io.on('connection', function(socket) {
+    console.log('connection', socket.handshake.headers.referer);
+    if (isRemote) {
+        clients.remote++;
+        var kioskDirective = {
+            directive : 'updateKiosks',
+            kiosks : randomData.kiosks
+        };
+        //socket.broadcast.emit('remoteEvent', kioskDirective);
+        io.emit('remoteEvent', kioskDirective);
+
+    }
+    else {
+        clients.screen++;
+    }
+    console.log('Connected clients:', clients);
+
     socket.on('remoteEvent', function(data) {
-        console.log('REMOTE EVENT!');
+        console.log('REMOTE EVENT', data.directive);
         socket.broadcast.emit('remoteEvent', data);
+        if (data.directive === 'toggleRandomData') {
+            //toggle it
+            randomData.active = !randomData.active;
+            console.log(randomData.active);
+            if (randomData.active === true) {
+                randomEventLoop();
+            }
+        }
+        if (data.directive === 'updateKiosks') {
+            randomData.kiosks = data.kiosks;
+            console.log(randomData.kiosks);
+        }
+    });
+    socket.on('disconnect', function(socket) {
+      if (isRemote) {
+          clients.remote--;
+      }
+      else {
+          clients.screen--;
+      }
+        console.log('Connected clients:', clients);
     });
 });
 
 
 
 
-randomEventLoop();
+
+//randomEventLoop();
 
 function randomEvent() {
 
@@ -35,7 +82,7 @@ function randomEvent() {
 
     //puffTaken
     if (eventType <= 2) {
-        event = eventTemplates.puffTaken;
+        event = randomData.eventTemplates.puffTaken;
 
         event.eventId = 'P-100' + randomId;
 
@@ -51,7 +98,7 @@ function randomEvent() {
 
     //lungFunctionTest
     if (eventType === 3) {
-        event = eventTemplates.lungFunctionTest;
+        event = randomData.eventTemplates.lungFunctionTest;
         var randomPef = Math.floor((Math.random() * 200) + 400) / 60;
         event.eventDetails.pef = randomPef;
         event.eventId = 'LF-100' + randomId;
@@ -62,9 +109,9 @@ function randomEvent() {
     event.eventDetails.eventTimeLocal = now;
     event.eventDetails.syncToDeviceTimeLocal = now;
 
-    var whiskys = ['Glenlivet', 'Dewars', 'Jameson', 'Laphroaig'];
-    var randomWhisky = Math.floor(Math.random() * whiskys.length);
-    var kioskName = whiskys[randomWhisky];
+
+    var randomKiosk = Math.floor(Math.random() * randomData.kiosks.length);
+    var kioskName = randomData.kiosks[randomKiosk];
     event.title = kioskName;
 
     console.log('\nEvent Emitted\n');
@@ -74,10 +121,12 @@ function randomEvent() {
 
 function randomEventLoop() {
     var rand = Math.round(Math.random() * 4000) + 2000;
-    setTimeout(function() {
-        randomEvent();
-        randomEventLoop();
-    }, rand);
+    if (randomData.active === true) {
+        setTimeout(function() {
+            randomEvent();
+            randomEventLoop();
+        }, rand);
+    }
 }
 
 
@@ -85,9 +134,13 @@ function randomEventLoop() {
 
 
 
-var eventTemplates = {};
+var randomData = {
+    eventTemplates: {},
+    kiosks: ['Glenlivet', 'Dewars', 'Jameson', 'Laphroaig'],
+    active: false
+};
 
-eventTemplates.puffTaken = {
+randomData.eventTemplates.puffTaken = {
     "eventType": "puffTaken",
     "eventId": "P-12345678",
     /*Dmitry this will be "P" for Puff, and the Id from the Puff table for puffs, for PFTs it will "LF" for lung function, and the Id from the UserMeasurements table like "LF-678363" */
@@ -112,7 +165,7 @@ eventTemplates.puffTaken = {
     }
 };
 
-eventTemplates.lungFunctionTest = {
+randomData.eventTemplates.lungFunctionTest = {
     "eventType": "lungFunctionTest",
     "eventId": "LF-456797",
     /*Dmitry this will be "P" for Puff, and the Id from the Puff table for puffs, for PFTs it will "LF" for lung function, and the Id from the UserMeasurements table like "LF-678363" */

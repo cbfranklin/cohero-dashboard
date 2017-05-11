@@ -19,3 +19,26 @@ h1, h2, h3, h4, h5, strong {
 .cohero-remote-options{
   text-align: center;
 }
+.cohero-kiosk-names-wrapper .tm-tag{
+  font-size:18px;
+  display:block;
+  float:left;
+  padding:2px;
+  border:1px solid #fff;
+  border-radius:2px;
+  margin:2px;
+}
+.cohero-kiosk-names-wrapper .tm-tag-remove{
+  color: var(--cohero-accent-blue);
+  padding: 0 2px;
+}
+.cohero-kiosk-names-wrapper .tm-tag-remove:hover{
+  text-decoration: none;
+}
+.cohero-kiosk-names-wrapper .kiosk-names{
+  font-size:18px;
+  float:none;
+  width:100%;
+  margin-top:10px;
+  color:#000;
+}

@@ -1,30 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="mobile-web-app-capable" content="yes">
     <title>Cohero Demo Remote</title>
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="bower_components/tagmanager/tagmanager.css" rel="stylesheet">-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href="css/museo-sans-rounded.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
 </head>
 
 <body>
-  <div class="container">
-    <br />
-    <img src="assets/Cohero Logo_Horizontal_White.svg">
-    <br /><br />
-    <div class="cohero-remote-options">
-      <button data-directive="clearData" class="btn btn-default btn-lg btn-block">Clear Data</button>
-      <button data-directive="toggleRandomData" class="btn btn-default btn-lg btn-block">Toggle Random Data</button>
-      <button data-directive="reloadPage" class="btn btn-default btn-lg btn-block">Reload Page</button>
-      <button data-directive="toggleActivityLog" class="btn btn-default btn-lg btn-block">Toggle Activity Log</button>
+    <div class="container">
+        <br />
+        <img src="assets/Cohero Logo_Horizontal_White.svg">
+        <br /><br />
+        <div class="cohero-remote-options">
+            <button data-directive="clearData" class="btn btn-default btn-lg btn-block">Clear Data</button>
+            <button data-directive="toggleRandomData" class="btn btn-default btn-lg btn-block">Toggle Random Data</button>
+            <button data-directive="reloadPage" class="btn btn-default btn-lg btn-block">Reload Page</button>
+            <button data-directive="toggleActivityLog" class="btn btn-default btn-lg btn-block">Toggle Activity Log</button>
+            <hr />
+            <div class="cohero-kiosk-names-wrapper">
+                <h2>Kiosk Names:</h2> <input type="text" name="tags" placeholder="Add Kiosk" class="kiosk-names" />
+            </div>
+
+        </div>
     </div>
-  </div>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/socket.io-client/socket.io.min.js"></script>
+    <script src="bower_components/tagmanager/tagmanager.js"></script>
     <script src="js/main.js"></script>
 </body>
 

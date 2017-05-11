@@ -40,7 +40,7 @@ $(function() {
 
     connectToCoheroHub();
 
-    handleRemoteEvents();
+    handleEvents();
 
 });
 
@@ -53,10 +53,10 @@ var admin = {
     },
     toggleRandomData: function() {
         if (socket._callbacks.$kioskEvent === undefined) {
-            socket.on('kioskEvent', kioskEventHandler);
+            //socket.on('kioskEvent', kioskEventHandler);
             console.log('Generating random events...');
         } else {
-            socket.removeListener('kioskEvent');
+            //socket.removeListener('kioskEvent');
             console.log('Stopping random events.');
         }
     },
@@ -124,13 +124,15 @@ function loadTemplates() {
     templates['cohero-notification-count'] = $('.template-cohero-notification-count').html();
 }
 
-function handleRemoteEvents() {
+function handleEvents() {
     socket.on('remoteEvent', remoteEventHandler);
+    socket.on('kioskEvent', kioskEventHandler);
 }
 
 function remoteEventHandler(msg) {
     console.log('Remote Event Recieved', msg);
     var directive = msg.directive;
+    if(admin[directive])
     admin[directive]();
 }
 
