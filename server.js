@@ -9,8 +9,8 @@ app.use('/', express.static('public'));
 
 app.use('/remote', express.static('remote'));
 
-http.listen(3000, function() {
-    console.log('listening on *:3000');
+http.listen(3434, function() {
+    console.log('listening on *:3434');
 });
 
 var clients = {
