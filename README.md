@@ -4,8 +4,8 @@
 
 ## Installation
 
-1. run `npm install` from `.`
-2. `cd` to `./public` and `bower install`
-3. `cd` to `./remote` and `bower install`
-4. run `npm start` from `.`
+1. run `npm install` in `.`
+2. `bower install` in `./public`
+3. `bower install` in `./remote`
+4. run `npm start` in`.`
 5. Serve and enjoy!
